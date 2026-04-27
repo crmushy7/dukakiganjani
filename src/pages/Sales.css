@@ -1,0 +1,263 @@
+/* -------------------- General Sales Page -------------------- */
+.sales {
+  padding: 20px;
+  background: #e0e0e0;
+  /* height: 100vh; */
+  /* background: linear-gradient(135deg, #e3f2fd, #f5faff, #eaf4ff); */
+  /* background-size: 400% 400%; */
+  animation: gradientFlow 12s ease infinite;
+  font-family: sans-serif;
+  background-color: #e4dada+;
+}
+
+.sales-title {
+  text-align: center;
+  color: #3110c2;
+  margin-bottom: 40px;
+  font-size: 2.3rem;
+  letter-spacing: 1px;
+  animation: titlePop 1s ease forwards;
+  transform: scale(0.9);
+  opacity: 0;
+}
+
+.sales h2 {
+  text-align: center;
+  color: #1565c0;
+}
+
+/* -------------------- Form -------------------- */
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  margin: 0 auto 30px auto;
+  gap: 10px;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.form input,
+.form select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #cfd8dc;
+  border-radius: 6px;
+  background: #f9fbfc;
+}
+
+.form button {
+  background-color: #1e88e5;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s ease;
+}
+
+.form button:hover {
+  background-color: #1565c0;
+  transform: scale(1.05);
+}
+
+/* -------------------- Sale Rows -------------------- */
+.sale-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.sale-row input[type="text"],
+.sale-row input[type="number"] {
+  flex: 1;
+  min-width: 120px;
+  padding: 8px;
+  font-size: 15px;
+  border: 1px solid #cfd8dc;
+  border-radius: 6px;
+  background: #fff;
+}
+
+/* Remove button */
+.sale-row button {
+  padding: 6px 12px;
+  background-color: #e53935;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  height: 40px;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.sale-row button:hover {
+  background-color: #c62828;
+  transform: scale(1.05);
+}
+
+/* -------------------- Suggestions -------------------- */
+.suggestion-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #cfd8dc;
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  animation: slideFade 0.25s ease forwards;
+}
+
+.suggestion-list li {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.suggestion-list li:hover {
+  background-color: #e3f2fd;
+}
+
+/* -------------------- Sales List -------------------- */
+.sales-list {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.sales-list li {
+  border-bottom: 1px solid #cfd8dc;
+  padding: 10px;
+  margin-bottom: 5px;
+  background: #ffffff;
+  border-radius: 6px;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* -------------------- Date Groups -------------------- */
+.date-group {
+  margin-bottom: 30px;
+  padding: 10px;
+  background-color: #e3f2fd;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.35s ease forwards;
+}
+
+.date-group h3 {
+  margin: 0 0 10px 0;
+  color: #1565c0;
+  border-bottom: 1px solid #bbdefb;
+  padding-bottom: 5px;
+}
+
+.date-group ul {
+  list-style: none;
+  padding: 0;
+}
+
+.date-group li {
+  background: #fff;
+  margin-bottom: 8px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+}
+
+/* -------------------- Sale Item -------------------- */
+.sale-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 6px;
+  background-color: #f9fbfc;
+  border-radius: 8px;
+}
+
+.sale-item-details {
+  flex-grow: 1;
+  width: 100%;
+  font-size: 15px;
+}
+
+.sale-item.adding {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.sale-item.removing {
+  animation: fadeOut 0.4s ease forwards;
+}
+
+/* Delete button */
+.delete-button {
+  background-color: #e53935;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #c62828;
+  transform: scale(1.05);
+}
+
+/* -------------------- Animations -------------------- */
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-10px); }
+}
+
+@keyframes slideFade {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .sale-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sale-row input,
+  .sale-row button {
+    width: 100%;
+  }
+
+  .form {
+    padding: 0 10px;
+  }
+}

@@ -1,0 +1,304 @@
+/* ================= MEDICOHUB - MEDICAL DEBTS UI ================= */
+
+.debts {
+  padding: 20px;
+  /* max-width: 1100px; */
+  margin: 0 auto;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  color: #1f2a37;
+  background: #f5f9ff;
+  min-height: 100vh;
+}
+
+/* Title */
+.debts h1 {
+  text-align: center;
+  color: #1e88e5;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+/* Sections (Wards / Categories) */
+.debts section {
+  margin-bottom: 30px;
+  background: #ffffff;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  border-left: 4px solid #1e88e5;
+}
+
+.debts h2 {
+  color: #1565c0;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #e3f2fd;
+  padding-bottom: 6px;
+}
+
+/* Search */
+.search-input {
+  width: 100%;
+  max-width: 420px;
+  padding: 10px;
+  margin: 10px auto 20px;
+  display: block;
+  border-radius: 8px;
+  border: 1px solid #cfd8dc;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: #1e88e5;
+  box-shadow: 0 0 0 3px rgba(30,136,229,0.15);
+}
+
+/* Cards container */
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Patient/Account card */
+.debt-card {
+  background: #fff;
+  border: 1px solid #e6eef5;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.debt-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Header */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Action buttons */
+.card-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.card-btn {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Medical styled actions */
+.card-btn.pay {
+  background-color: #2e7d32;
+  color: white;
+}
+
+.card-btn.pay:hover {
+  background-color: #1b5e20;
+}
+
+.card-btn.debt {
+  background-color: #1565c0;
+  color: white;
+}
+
+.card-btn.debt:hover {
+  background-color: #0d47a1;
+}
+
+/* Summary line */
+.card-summary {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #37474f;
+}
+
+/* Transaction history */
+.card-details {
+  margin-top: 10px;
+  padding-left: 15px;
+  font-size: 13px;
+  color: #455a64;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+/* Floating add button */
+.floating-add-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: none;
+  background-color: #1e88e5;
+  color: white;
+  font-size: 26px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.floating-add-btn:hover {
+  background-color: #1565c0;
+}
+
+/* Add options menu */
+.add-options {
+  position: fixed;
+  bottom: 90px;
+  right: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.add-options button {
+  background-color: #42a5f5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.add-options button:hover {
+  background-color: #1e88e5;
+}
+
+/* Dialog (Medical form style) */
+.payment-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  padding: 22px;
+  border-radius: 12px;
+  width: 320px;
+  z-index: 1001;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.payment-dialog h3 {
+  margin-bottom: 12px;
+  color: #1e88e5;
+}
+
+.payment-dialog input,
+.payment-dialog textarea {
+  width: 100%;
+  padding: 9px;
+  margin-bottom: 10px;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.dialog-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Buttons */
+.save-btn {
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 6px;
+}
+
+.cancel-btn {
+  background-color: #c62828;
+  color: white;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 6px;
+}
+
+/* Loading overlay */
+.saving-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.saving-box {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Spinner */
+.loader {
+  width: 38px;
+  height: 38px;
+  border: 4px solid #90caf9;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Success popup (medical confirmation style) */
+.success-popup {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 3000;
+}
+
+.success-box.upgraded {
+  background: #ffffff;
+  padding: 25px 35px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.upgraded-check {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #2e7d32;
+  color: white;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+}
+
+.success-text {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .payment-dialog {
+    width: 90%;
+  }
+}

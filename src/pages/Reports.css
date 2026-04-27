@@ -1,0 +1,231 @@
+.report-container {
+  padding: 20px;
+  font-family: "Segoe UI", sans-serif;
+  background-color: white;
+  color: #4a004e;
+}
+
+.report-header {
+  text-align: center;
+  color: #6c33d6;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.top-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+
+.top-controls input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #8181f2;
+  border-radius: 5px;
+}
+
+.top-controls button {
+  background-color: #8181f2;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filters input,
+.filters button {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #8181f2;
+}
+
+.filters button {
+  background-color: #8181f2;
+  color: white;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.summary-card {
+  background: #ffe6f2;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid #8181f2;
+  box-shadow: 
+}
+
+.table-container {
+  margin-bottom: 25px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+th, td {
+  border: 1px solid #8181f2;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #8181f2;
+  color: white;
+}
+
+h2 {
+  color: #8181f2;
+  border-bottom: 2px solid #8181f2;
+  padding-bottom: 5px;
+  margin-top: 25px;
+}
+
+.report-footer {
+  text-align: center;
+  margin-top: 30px;
+  border-top: 2px solid #8181f2;
+  padding-top: 15px;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #161315;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  z-index: 999;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+  animation: bounceIn 0.4s ease;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.back-to-top:hover {
+  background-color: #ff1493;
+  transform: translateY(-3px);
+}
+
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.back-to-top:hover {
+  background-color: #ff1493;
+  transform: translateY(-3px);
+}
+.report-header {
+  text-align: center;
+  font-size: 28px;
+  color: pink;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: headerFadeIn 0.8s ease forwards;
+}
+
+@keyframes headerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* --- Add this at the end of your CSS --- */
+
+/* Fade in animation for main sections */
+.report-container,
+.top-controls,
+.filters,
+.summary,
+.summary-card,
+.table-container,
+.report-footer {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.report-container { animation-delay: 0.1s; }
+.top-controls { animation-delay: 0.2s; }
+.filters { animation-delay: 0.3s; }
+.summary { animation-delay: 0.4s; }
+.summary-card:nth-child(1) { animation-delay: 0.5s; }
+.summary-card:nth-child(2) { animation-delay: 0.6s; }
+.summary-card:nth-child(3) { animation-delay: 0.7s; }
+.summary-card:nth-child(4) { animation-delay: 0.8s; }
+.summary-card:nth-child(5) { animation-delay: 0.9s; }
+.summary-card:nth-child(6) { animation-delay: 1s; }
+.table-container:nth-of-type(1) { animation-delay: 1.1s; }
+.table-container:nth-of-type(2) { animation-delay: 1.2s; }
+.table-container:nth-of-type(3) { animation-delay: 1.3s; }
+.table-container:nth-of-type(4) { animation-delay: 1.4s; }
+.table-container:nth-of-type(5) { animation-delay: 1.5s; }
+.table-container:nth-of-type(6) { animation-delay: 1.6s; }
+.report-footer { animation-delay: 1.7s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
