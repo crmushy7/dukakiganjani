@@ -2,7 +2,7 @@
 .sales {
   padding: 20px;
   background: #e0e0e0;
-  /* height: 100vh; */
+  height: 100vh;
   /* background: linear-gradient(135deg, #e3f2fd, #f5faff, #eaf4ff); */
   /* background-size: 400% 400%; */
   animation: gradientFlow 12s ease infinite;

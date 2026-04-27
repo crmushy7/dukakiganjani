@@ -13,7 +13,7 @@ code {
 }
 html, body, #root {
   height: auto !important;
-  width: max-content !important;
+  width: 100% !important;
   overflow-x: auto !important;
   overflow-y: auto !important;
   touch-action: manipulation;
