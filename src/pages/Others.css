@@ -1,114 +1,142 @@
+/* ================= OTHERS PAGE - MEDICAL FINANCE UI ================= */
+
 .others-page {
-    padding: 20px;
-    font-family: sans-serif;
-    background-color: #f9f9f9;
-    min-height: 100vh;
-  }
-  
-  .others-page h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .sections {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  }
-  
-  .record-section {
-    flex: 1;
-    min-width: 300px;
-    background: white;
-    margin: 10px;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .record-section h2 {
-    margin-bottom: 10px;
-    color: #333;
-    font-size: 1.2rem;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 5px;
-  }
-  
-  .date-group h4 {
-    margin-top: 15px;
-    font-weight: bold;
-    color: #555;
-  }
-  
-  .date-group ul {
-    padding-left: 20px;
-    margin: 0;
-  }
-  
-  .date-group li {
-    margin: 5px 0;
-    color: #333;
-  }
-  
-  .floating-add-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #e91e63;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 56px;
-    height: 56px;
-    font-size: 24px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .dialog-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    background: rgba(0, 0, 0, 0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .dialog {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-    min-width: 300px;
-  }
-  
-  .dialog input {
-    width: 100%;
-    margin: 8px 0;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 16px;
-  }
-  
-  .dialog button {
-    padding: 8px 16px;
-    margin: 5px;
-    background-color: #2196f3;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  
-  .dialog-buttons {
-    text-align: right;
-  }  
-  .filter-buttons {
+  padding: 20px;
+  font-family: sans-serif;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* Title */
+.others-page h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Sections layout */
+.sections {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* Record section */
+.record-section {
+  flex: 1;
+  min-width: 280px;
+  max-width: 100%;
+  background: white;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+/* Section title */
+.record-section h2 {
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+}
+
+/* Date group */
+.date-group h4 {
+  margin-top: 15px;
+  font-weight: bold;
+  color: #555;
+}
+
+/* List */
+.date-group ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.date-group li {
+  margin: 5px 0;
+  color: #333;
+  word-break: break-word;
+}
+
+/* Floating button */
+.floating-add-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #e91e63;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Overlay */
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Dialog */
+.dialog {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  max-width: 340px;
+  box-sizing: border-box;
+}
+
+/* Inputs */
+.dialog input {
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* Buttons */
+.dialog button {
+  padding: 8px 16px;
+  margin: 5px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Dialog buttons */
+.dialog-buttons {
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* FILTER BUTTONS */
+.filter-buttons {
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -117,7 +145,7 @@
 }
 
 .filter-buttons button {
-  background-color: #f8c2d0; /* soft pink */
+  background-color: #f8c2d0;
   color: #333;
   border: none;
   padding: 10px 18px;
@@ -125,35 +153,33 @@
   cursor: pointer;
   font-weight: 500;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .filter-buttons button:hover {
-  background-color: #f48fb1; /* slightly darker pink on hover */
+  background-color: #f48fb1;
   color: white;
 }
 
 .filter-buttons button.active {
-  background-color: #8181f2; /* active pink */
+  background-color: #8181f2;
   color: white;
   font-weight: 600;
   transform: scale(1.05);
-  box-shadow: 0 4px 10px rgba(233, 30, 99, 0.4);
-}/* Fade-in with slight upward motion */
+}
+
+/* ANIMATIONS */
 .animated-section {
   opacity: 0;
   transform: translateY(10px);
   animation: fadeInUp 0.4s ease forwards;
 }
 
-/* Scale in effect for dialogs or buttons */
 .scale-in {
   opacity: 0;
   transform: scale(0.9);
   animation: scaleIn 0.3s ease forwards;
 }
 
-/* Keyframes for fade-in */
 @keyframes fadeInUp {
   to {
     opacity: 1;
@@ -161,7 +187,6 @@
   }
 }
 
-/* Keyframes for scale-in */
 @keyframes scaleIn {
   to {
     opacity: 1;
@@ -169,12 +194,34 @@
   }
 }
 
-/* Staggered animation for records */
+/* STAGGER */
 .record-section, .date-group {
   opacity: 0;
   transform: translateY(10px);
   animation: fadeInUp 0.35s ease forwards;
 }
 
-/* Stagger effect using delay via inline style in React */
+/* ================= RESPONSIVE ================= */
 
+@media (max-width: 768px) {
+  .record-section {
+    min-width: 100%;
+    margin: 8px 0;
+  }
+
+  .floating-add-btn {
+    bottom: 15px;
+    right: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dialog {
+    padding: 18px;
+  }
+
+  .filter-buttons button {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+}

@@ -2,9 +2,12 @@
   padding: 1rem;
   font-family: Arial, sans-serif;
   background-color: #ddd;
-  height: 100vh;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
 }
 
+/* Controls */
 .controls {
   display: flex;
   flex-wrap: wrap;
@@ -12,17 +15,19 @@
   margin-bottom: 1rem;
 }
 
-.controls input, 
+.controls input,
 .controls select {
-  padding: 6px;
+  padding: 8px;
   font-size: 1rem;
   border-radius: 8px;
   border: 1px solid #ccc;
+  flex: 1;
+  min-width: 150px;
 }
 
+/* Buttons */
 .btn {
   padding: 6px 12px;
-  margin-right: 5px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -47,28 +52,37 @@
   background-color: #d32f2f;
 }
 
+/* Group */
 .group {
   margin-bottom: 2rem;
   animation: fadeIn 0.5s ease-in-out;
 }
 
+/* TABLE FIX (IMPORTANT FOR MOBILE) */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
 table {
   width: 100%;
+  min-width: 600px;
   border-collapse: collapse;
   margin-top: 0.5rem;
-  overflow-x: auto;
 }
 
 th, td {
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  white-space: nowrap;
 }
 
 th {
   background-color: #f8bbd0;
 }
 
+/* Floating button */
 .add-item-button {
   position: fixed;
   bottom: 30px;
@@ -84,16 +98,10 @@ th {
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
-.add-item-button:hover {
-  background-color: #ec407a;
-}
-
+/* Dialog */
 .dialog-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
   background-color: rgba(0,0,0,0.4);
   display: flex;
   align-items: center;
@@ -105,61 +113,29 @@ th {
   background: white;
   padding: 1rem;
   border-radius: 12px;
-  width: 300px;
+  width: 90%;
+  max-width: 350px;
   animation: scaleIn 0.3s ease-out;
 }
 
-.dialog input, .dialog select {
+.dialog input,
+.dialog select {
   width: 100%;
   margin-bottom: 0.5rem;
   padding: 8px;
-  font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 8px;
 }
 
-.dialog-actions {
-  display: flex;
-  justify-content: space-between;
-}
-
-.chart-container {
-  margin-top: 2rem;
-}
-
-@keyframes scaleIn {
-  from {
-    transform: scale(0.7);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    transform: translateY(10px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
+/* Modal */
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background-color: rgba(0,0,0,0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 999;
-  animation: fadeIn 0.2s ease-in-out;
 }
 
 .modal-content {
@@ -168,88 +144,12 @@ th {
   border-radius: 15px;
   width: 90%;
   max-width: 400px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  animation: slideIn 0.3s ease-out;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.modal-content h3 {
-  margin-bottom: 10px;
-  font-size: 20px;
-  color: #333;
-}
-
-.modal-content input,
-.modal-content select {
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  outline: none;
-  transition: border 0.2s;
-}
-
-.modal-content input:focus,
-.modal-content select:focus {
-  border-color: #f06292;
-}
-
-.dialog-actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
-}
-
-.dialog-actions .btn {
-  flex: 1;
-  margin: 0 5px;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideIn {
-  from { transform: translateY(-30px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-h1 {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #e91e63; /* fallback color */
-  margin: 20px 0;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-
-  /* Gradient text */
-  background: linear-gradient(to right, #6778e7, #f48fb1);
-  -webkit-background-clip: text;              /* ✅ Standard property */
-  background-clip: text;      /* ✅ Vendor prefix for Safari/Chrome */
-  -webkit-text-fill-color: transparent;
-
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.fade-in {
-  animation: fadeInRow 0.4s ease forwards;
-}
-.fade-out {
-  animation: fadeOutRow 0.3s ease forwards;
-}
-
-@keyframes fadeInRow {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeOutRow {
-  from { opacity: 1; transform: translateY(0); }
-  to { opacity: 0; transform: translateY(-10px); }
-}
+/* Loader */
 .loader-overlay {
   position: fixed;
   inset: 0;
@@ -261,72 +161,45 @@ h1 {
 }
 
 .loading-box {
-
   background: white;
   padding: 25px 35px;
   border-radius: 12px;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  animation: scaleIn 0.3s ease forwards;
-
-  /* ⚠️ NO animation or transform here */
-}
-.loading-box p {
-  margin-top: 12px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #e91e63;
-}
-/* Loader animation */
-.loader {
-  width: 40px;
-  height: 40px;
-  border: 4px solid #ff8bbd;
-  border-top-color: transparent;
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
 }
 
-
-.text {
-  display: inline-block;   /* 🔑 inazuia kuathiriwa */
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #e91e63;
+/* TEXT TITLE FIX */
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #6778e7, #f48fb1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+/* ANIMATIONS */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Group fade/slide in animation */
-.group {
-  margin-bottom: 2rem;
-  opacity: 0;
-  transform: translateY(10px);
-  animation: fadeInUp 0.5s ease forwards;
+@keyframes scaleIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
+/* RESPONSIVE FIX (VERY IMPORTANT) */
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.animated-section {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.5s ease forwards;
-  color: #000;
-}
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  table {
+    min-width: 500px;
+  }
+
+  .add-item-button {
+    bottom: 20px;
+    right: 20px;
+  }
 }

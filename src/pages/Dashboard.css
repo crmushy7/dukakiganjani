@@ -1,114 +1,103 @@
 /* =============== MEDICAL HUB DASHBOARD =============== */
+
 .dashboard {
-  overflow: auto;
-  overflow-x: auto !important; 
-  overflow-y: auto !important;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* align-items: center; */
   padding: 30px;
   font-family: 'Poppins', 'Segoe UI', sans-serif;
   min-height: 100vh;
+  box-sizing: border-box;
+
   background: linear-gradient(135deg, #e3f2fd, #f5faff, #eaf4ff);
   background-size: 400% 400%;
   animation: backgroundFlow 12s ease infinite;
 }
 
-/* Animated Gradient Background */
+/* Animated Background */
 @keyframes backgroundFlow {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* Dashboard Title */
+/* Title */
 .dashboard-title {
-    
   text-align: center;
   color: #3110c2;
-  margin-bottom: 40px;
+  margin-bottom: 35px;
   font-size: 2.3rem;
   letter-spacing: 1px;
-  animation: titlePop 1s ease forwards;
-  transform: scale(0.9);
+
+  animation: titlePop 0.9s ease forwards;
   opacity: 0;
+  transform: scale(0.95);
 }
 
 @keyframes titlePop {
-  0% { transform: scale(0.9); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-/* Summary Cards Layout */
+/* Cards Grid */
 .summary-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
   max-width: 1100px;
   margin: 0 auto;
 }
 
-/* Individual Card */
+/* Card */
 .card {
-  background-color: white;
+  background: white;
   border-radius: 16px;
-  padding: 25px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  padding: 22px;
   text-align: center;
-  transition: all 0.4s ease;
-  transform: translateY(40px);
-  opacity: 0;
-  animation: cardRise 0.8s forwards;
+
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
   border: 1px solid #e3f2fd;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  opacity: 0;
+  transform: translateY(25px);
+  animation: cardRise 0.6s forwards;
 }
 
-/* stagger animation */
-.card:nth-child(odd) {
-  animation-delay: 0.2s;
-}
-.card:nth-child(even) {
-  animation-delay: 0.4s;
-}
+/* safer stagger */
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
 
 @keyframes cardRise {
-  0% { transform: translateY(40px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Hover effect */
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 24px rgba(21, 101, 192, 0.2);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 22px rgba(21, 101, 192, 0.2);
 }
 
-/* Card title */
+/* Title inside card */
 .card h3 {
   margin-bottom: 10px;
   color: #37474f;
   font-weight: 500;
 }
 
-/* Value display */
+/* Value */
 .card p {
   font-size: 22px;
   font-weight: bold;
   color: #1565c0;
-  text-shadow: 0 0 6px rgba(21, 101, 192, 0.15);
-  animation: glowPulse 3s ease-in-out infinite;
+  word-break: break-word;
 }
 
-@keyframes glowPulse {
-  0%, 100% {
-    text-shadow: 0 0 6px rgba(21, 101, 192, 0.15);
-    color: #1565c0;
-  }
-  50% {
-    text-shadow: 0 0 14px rgba(30, 136, 229, 0.35);
-    color: #1e88e5;
-  }
-}
-
-/* Optional icon */
+/* Icon */
 .card::before {
   content: attr(data-icon);
   display: block;
@@ -119,5 +108,35 @@
 
 @keyframes iconFloat {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  50% { transform: translateY(-5px); }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 20px;
+  }
+
+  .dashboard-title {
+    font-size: 1.8rem;
+  }
+
+  .card {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard {
+    padding: 15px;
+  }
+
+  .dashboard-title {
+    font-size: 1.5rem;
+  }
+
+  .card p {
+    font-size: 18px;
+  }
 }
