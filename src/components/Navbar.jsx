@@ -18,7 +18,7 @@ const Navbar = () => {
       <div className="nav-links">
 
         <NavLink to="/dashboard" className={({ isActive }) => isActive ? "active" : ""}>
-          Dashboardss
+          Dashboard
         </NavLink>
 
         <NavLink to="/medicine-sales" className={({ isActive }) => isActive ? "active" : ""}>
