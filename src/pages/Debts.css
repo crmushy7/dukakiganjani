@@ -2,13 +2,13 @@
 
 .debts {
   padding: 20px;
+  width: 100%;
+  /* max-width: 1100px; */
   margin: 0 auto;
   font-family: 'Segoe UI', Roboto, Arial, sans-serif;
   color: #1f2a37;
   background: #f5f9ff;
   min-height: 100vh;
-  box-sizing: border-box;
-  overflow-x: hidden;
 }
 
 /* Title */
@@ -19,7 +19,7 @@
   font-weight: 700;
 }
 
-/* Sections */
+/* Sections (Wards / Categories) */
 .debts section {
   margin-bottom: 30px;
   background: #ffffff;
@@ -29,7 +29,6 @@
   border-left: 4px solid #1e88e5;
 }
 
-/* Sub titles */
 .debts h2 {
   color: #1565c0;
   margin-bottom: 12px;
@@ -47,7 +46,6 @@
   border-radius: 8px;
   border: 1px solid #cfd8dc;
   outline: none;
-  box-sizing: border-box;
 }
 
 .search-input:focus {
@@ -55,14 +53,14 @@
   box-shadow: 0 0 0 3px rgba(30,136,229,0.15);
 }
 
-/* Cards */
+/* Cards container */
 .cards-container {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-/* Card */
+/* Patient/Account card */
 .debt-card {
   background: #fff;
   border: 1px solid #e6eef5;
@@ -70,9 +68,6 @@
   padding: 15px;
   box-shadow: 0 1px 6px rgba(0,0,0,0.05);
   transition: transform 0.2s ease;
-
-  overflow: hidden;
-  word-wrap: break-word;
 }
 
 .debt-card:hover {
@@ -84,15 +79,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
 }
 
-/* Buttons */
+/* Action buttons */
 .card-buttons {
   display: flex;
   gap: 8px;
-  flex-wrap: wrap;
 }
 
 .card-btn {
@@ -102,10 +94,9 @@
   cursor: pointer;
   font-size: 13px;
   font-weight: 600;
-  white-space: nowrap;
 }
 
-/* Actions */
+/* Medical styled actions */
 .card-btn.pay {
   background-color: #2e7d32;
   color: white;
@@ -124,14 +115,14 @@
   background-color: #0d47a1;
 }
 
-/* Summary */
+/* Summary line */
 .card-summary {
   margin-top: 8px;
   font-size: 14px;
   color: #37474f;
 }
 
-/* Details */
+/* Transaction history */
 .card-details {
   margin-top: 10px;
   padding-left: 15px;
@@ -141,7 +132,7 @@
   overflow-y: auto;
 }
 
-/* Floating button */
+/* Floating add button */
 .floating-add-btn {
   position: fixed;
   bottom: 25px;
@@ -161,7 +152,7 @@
   background-color: #1565c0;
 }
 
-/* Add options */
+/* Add options menu */
 .add-options {
   position: fixed;
   bottom: 90px;
@@ -178,13 +169,14 @@
   border-radius: 8px;
   padding: 10px 12px;
   cursor: pointer;
+  font-size: 13px;
 }
 
 .add-options button:hover {
   background-color: #1e88e5;
 }
 
-/* Dialog */
+/* Dialog (Medical form style) */
 .payment-dialog {
   position: fixed;
   top: 50%;
@@ -194,10 +186,13 @@
   padding: 22px;
   border-radius: 12px;
   width: 320px;
-  max-width: 95%;
   z-index: 1001;
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  box-sizing: border-box;
+}
+
+.payment-dialog h3 {
+  margin-bottom: 12px;
+  color: #1e88e5;
 }
 
 .payment-dialog input,
@@ -208,13 +203,11 @@
   border: 1px solid #d0d7de;
   border-radius: 6px;
   font-size: 14px;
-  box-sizing: border-box;
 }
 
 .dialog-buttons {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
 }
 
 /* Buttons */
@@ -234,7 +227,7 @@
   border-radius: 6px;
 }
 
-/* Overlay */
+/* Loading overlay */
 .saving-overlay {
   position: fixed;
   inset: 0;
@@ -246,18 +239,67 @@
   z-index: 2000;
 }
 
-/* Responsive FIX */
+.saving-box {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Spinner */
+.loader {
+  width: 38px;
+  height: 38px;
+  border: 4px solid #90caf9;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Success popup (medical confirmation style) */
+.success-popup {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 3000;
+}
+
+.success-box.upgraded {
+  background: #ffffff;
+  padding: 25px 35px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.upgraded-check {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #2e7d32;
+  color: white;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+}
+
+.success-text {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+/* Responsive */
 @media (max-width: 600px) {
-  .debts {
-    padding: 12px;
-  }
-
   .payment-dialog {
-    width: 92%;
-  }
-
-  .floating-add-btn {
-    bottom: 15px;
-    right: 15px;
+    width: 90%;
   }
 }

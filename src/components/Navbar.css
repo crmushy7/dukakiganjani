@@ -1,107 +1,206 @@
+/* ================= NAVBAR ================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .navbar {
   display: flex;
-  /* width: auto; */
   justify-content: space-between;
   align-items: center;
-  background-color: #1565c0; /*  */
-  padding: 10px 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  gap: 15px;
+  width: 100%;
+  padding: 12px 18px;
+  background-color: #1565c0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  flex-wrap: wrap;
 }
 
+/* Links container */
 .nav-links {
   display: flex;
-  gap: 15px;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  flex: 1;
 }
 
+/* Links */
 .nav-links a {
   text-decoration: none;
   color: white;
   font-weight: 500;
-  transition: border-bottom 0.3s ease;
+  font-size: 15px;
+  padding: 6px 0;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.nav-links a:hover {
+  opacity: 0.9;
 }
 
 .nav-links a.active {
   border-bottom: 2px solid white;
 }
 
+/* Logout area */
+.logout-link {
+  display: flex;
+  align-items: center;
+}
+
 .logout-link button {
   display: flex;
   align-items: center;
+  gap: 6px;
   background-color: transparent;
   color: white;
   border: 1px solid white;
-  padding: 6px 14px;
+  padding: 8px 14px;
   border-radius: 20px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .logout-link button:hover {
   background-color: white;
-  color: #ff5e78;
-  box-shadow: 0 0 5px white;
+  color: #1565c0;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
 }
-/* Alert dialog backdrop */
+
+/* ================= ALERT DIALOG ================= */
+
 .alert-dialog-backdrop {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.4);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 2000;
+  padding: 15px;
 }
 
-/* Dialog box */
 .alert-dialog {
   background: white;
   padding: 25px 30px;
-  border-radius: 10px;
+  border-radius: 12px;
   text-align: center;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
   animation: fadeInScale 0.3s ease forwards;
+}
+
+.alert-dialog p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
 }
 
 /* Dialog buttons */
 .dialog-buttons {
   margin-top: 20px;
   display: flex;
-  justify-content: space-around;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.confirm-btn,
+.cancel-btn {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 600;
+  min-width: 110px;
+  transition: 0.3s ease;
 }
 
 .confirm-btn {
   background-color: #d63384;
   color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.cancel-btn {
-  background-color: #ccc;
-  color: #333;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 .confirm-btn:hover {
   background-color: #ff1493;
 }
 
-.cancel-btn:hover {
-  background-color: #999;
+.cancel-btn {
+  background-color: #ccc;
+  color: #333;
 }
 
-/* Animation for dialog */
+.cancel-btn:hover {
+  background-color: #999;
+  color: white;
+}
+
+/* Animation */
 @keyframes fadeInScale {
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+
+  .logout-link {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .logout-link button {
+    width: 100%;
+    justify-content: center;
+    max-width: 220px;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .nav-links {
+    gap: 8px;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+  }
+
+  .alert-dialog {
+    padding: 20px;
+  }
+
+  .confirm-btn,
+  .cancel-btn {
+    width: 100%;
+  }
 }

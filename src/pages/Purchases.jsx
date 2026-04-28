@@ -206,82 +206,111 @@ const Purchases = () => {
     }
   };
 
-  return (
+ return (
   <div className="purchases">
     {loading && (
-  <div className="loader-overlay">
-    <div className="loading-box">
-      <div className="loader"></div>
-      <p>saving...</p>
-    </div>
-  </div>
-)}
+      <div className="loader-overlay">
+        <div className="loading-box">
+          <div className="loader"></div>
+          <p>saving...</p>
+        </div>
+      </div>
+    )}
 
-
-    <h1 className="animated-section" style={{ animationDelay: '0s' }}>MEDICOHUB Purchases</h1>
+    <h1 className="headertu" style={{ animationDelay: '0s' }}>
+      MedicoHub Purchases
+    </h1>
 
     <div className="controls animated-section" style={{ animationDelay: '0.1s' }}>
-      <input type="text" placeholder="Tafuta dawa..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
+      <input
+        type="text"
+        placeholder="Search medicines..."
+        value={searchQuery}
+        onChange={e => setSearchQuery(e.target.value)}
+      />
+
       <select value={category} onChange={e => setCategory(e.target.value)}>
         <option value="all">All</option>
-        <option value="metals">PainKillers</option>
-        <option value="electronics">Antibiotics</option>
-        <option value="plumbing">Orals</option>
-        <option value="others">Others</option>
+        <option value="Painkillers">Painkillers</option>
+        <option value="Antibiotics">Antibiotics</option>
+        <option value="Orals">Orals</option>
+        <option value="Others">Others</option>
       </select>
+
       <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
       <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
-      <button className="btn colored" onClick={exportToExcel}>Export to Excel</button>
-      <button className="btn colored" onClick={exportToCSV}>Export to CSV</button>
+
+      <button className="btn colored" onClick={exportToExcel}>
+        Export to Excel
+      </button>
+
+      <button className="btn colored" onClick={exportToCSV}>
+        Export to CSV
+      </button>
     </div>
 
     {Object.entries(groupedItems).map(([date, items], idx) => (
       <div
         key={date}
         className="group animated-section"
-        style={{ animationDelay: `${0.2 + idx * 0.1}s` }} // stagger after header and controls
+        style={{ animationDelay: `${0.2 + idx * 0.1}s` }}
       >
         <h3>{date}</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Qty</th>
-              <th>Buying Price</th>
-              <th>Price per Item</th>
-              <th>Selling Price</th>
-              <th>Total</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map(item => (
-              <tr
-                key={item.id}
-                className={`${addingId === item.id ? 'fade-in' : ''} ${removingId === item.id ? 'fade-out' : ''}`}
-              >
-                <td>{item.name}</td>
-                <td>{item.quantity}</td>
-                <td>{item.buyingPrice}</td>
-                <td>{(item.buyingPrice / item.quantity).toFixed(2)}</td>
-                <td>{item.sellingPrice}</td>
-                <td>{item.buyingPrice.toLocaleString()}</td>
-                <td>
-                  <button
-                    className="btn colored"
-                    onClick={() => {
-                      setEditItem(item);
-                      setShowEditItemDialog(true);
-                    }}
-                  >
-                    Edit
-                  </button>
-                  <button className="btn danger" onClick={() => handleDeleteItem(item.id, item.name)}>Delete</button>
-                </td>
+
+        {/* ✅ WRAPPER ADDED HERE */}
+        <div className="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Qty</th>
+                <th>Buying Price</th>
+                <th>Price per Item</th>
+                <th>Selling Price</th>
+                <th>Total</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody>
+              {items.map(item => (
+                <tr
+                  key={item.id}
+                  className={`${addingId === item.id ? 'fade-in' : ''} ${
+                    removingId === item.id ? 'fade-out' : ''
+                  }`}
+                >
+                  <td>{item.name}</td>
+                  <td>{item.quantity}</td>
+                  <td>{item.buyingPrice}</td>
+                  <td>{(item.buyingPrice / item.quantity).toFixed(2)}</td>
+                  <td>{item.sellingPrice}</td>
+                  <td>{item.buyingPrice.toLocaleString()}</td>
+
+                  <td>
+                    <button
+                      className="btn colored"
+                      onClick={() => {
+                        setEditItem(item);
+                        setShowEditItemDialog(true);
+                      }}
+                    >
+                      Edit
+                    </button>
+
+                    <button
+                      className="btn danger"
+                      onClick={() => handleDeleteItem(item.id, item.name)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
         <p>
           <strong>Daily Total (Buying): </strong>
           {items.reduce((sum, item) => sum + item.buyingPrice, 0).toLocaleString()} Tsh
@@ -290,64 +319,169 @@ const Purchases = () => {
     ))}
 
     {chartData.length > 0 && (
-      <div className="chart-container animated-section" style={{ animationDelay: `${0.2 + Object.entries(groupedItems).length * 0.1}s` }}>
+      <div
+        className="chart-container animated-section"
+        style={{
+          animationDelay: `${
+            0.2 + Object.entries(groupedItems).length * 0.1
+          }s`,
+        }}
+      >
         <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={chartData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+          <BarChart
+            data={chartData}
+            margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+          >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" />
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="quantity" fill="#8884d8" name="Idadi ya Kununua" />
-            <Bar dataKey="value" fill="#82ca9d" name="Tsh" />
+
+            <Bar dataKey="quantity" fill="#8884d8" name="Total Quantity" />
+            <Bar dataKey="value" fill="#82ca9d" name="Total Buying Value (Tsh)" />
           </BarChart>
         </ResponsiveContainer>
       </div>
     )}
 
-    <button className="add-item-button colored animated-section" style={{ animationDelay: `${0.3 + Object.entries(groupedItems).length * 0.1}s` }} onClick={() => setShowAddItemDialog(true)}>+</button>
+    <button
+      className="add-item-button colored animated-section"
+      style={{
+        animationDelay: `${
+          0.3 + Object.entries(groupedItems).length * 0.1
+        }s`,
+      }}
+      onClick={() => setShowAddItemDialog(true)}
+    >
+      +
+    </button>
 
-    {/* Add and Edit Dialogs remain unchanged */}
+    {/* ADD ITEM DIALOG */}
     {showAddItemDialog && (
       <div className="dialog-overlay">
         <div className="dialog scale-in">
-          <h3>Ongeza dawa mpya</h3>
-          <input type="text" placeholder="Jina la Dawa" value={newItem.name} onChange={e => setNewItem({ ...newItem, name: e.target.value })} />
-          <input type="number" placeholder="Bei ya Kununua" value={newItem.buyingPrice} onChange={e => setNewItem({ ...newItem, buyingPrice: e.target.value })} />
-          <input type="number" placeholder="Bei ya Kuuza" value={newItem.sellingPrice} onChange={e => setNewItem({ ...newItem, sellingPrice: e.target.value })} />
-          <input type="number" placeholder="Idadi ya Kununua" value={newItem.quantity} onChange={e => setNewItem({ ...newItem, quantity: e.target.value })} />
-          <select value={newItem.category} onChange={e => setNewItem({ ...newItem, category: e.target.value })}>
+          <h3>Add New Medicine</h3>
+
+          <input
+            type="text"
+            placeholder="Medicine Name"
+            value={newItem.name}
+            onChange={e =>
+              setNewItem({ ...newItem, name: e.target.value })
+            }
+          />
+
+          <input
+            type="number"
+            placeholder="Buying Price"
+            value={newItem.buyingPrice}
+            onChange={e =>
+              setNewItem({ ...newItem, buyingPrice: e.target.value })
+            }
+          />
+
+          <input
+            type="number"
+            placeholder="Selling Price"
+            value={newItem.sellingPrice}
+            onChange={e =>
+              setNewItem({ ...newItem, sellingPrice: e.target.value })
+            }
+          />
+
+          <input
+            type="number"
+            placeholder="Quantity"
+            value={newItem.quantity}
+            onChange={e =>
+              setNewItem({ ...newItem, quantity: e.target.value })
+            }
+          />
+
+          <select
+            value={newItem.category}
+            onChange={e =>
+              setNewItem({ ...newItem, category: e.target.value })
+            }
+          >
             <option value="Painkillers">Painkillers</option>
-            <option value="PainKillers">PainKillers</option>
             <option value="Antibiotics">Antibiotics</option>
             <option value="Orals">Orals</option>
-            <option value="others">Others</option>
+            <option value="Others">Others</option>
           </select>
+
           <div className="dialog-actions">
-            <button className="btn colored" onClick={handleAddItem}>Ongeza dawa</button>
-            <button className="btn" onClick={() => setShowAddItemDialog(false)}>Cancel</button>
+            <button className="btn colored" onClick={handleAddItem}>
+              Add
+            </button>
+
+            <button className="btn" onClick={() => setShowAddItemDialog(false)}>
+              Cancel
+            </button>
           </div>
         </div>
       </div>
     )}
 
+    {/* EDIT ITEM DIALOG */}
     {showEditItemDialog && editItem && (
       <div className="modal-overlay" onClick={() => setShowEditItemDialog(false)}>
         <div className="modal-content slide-in" onClick={e => e.stopPropagation()}>
-          <h3>Hariri Dawa</h3>
-          <input type="text" placeholder="Jina la Dawa" value={editItem.name} onChange={e => setEditItem({ ...editItem, name: e.target.value })} />
-          <input type="number" placeholder="Bei ya Kununua (Jumla)" value={editItem.buyingPrice} onChange={e => setEditItem({ ...editItem, buyingPrice: e.target.value })} />
-          <input type="number" placeholder="Bei ya Kuuza (kwa kila kitu)" value={editItem.sellingPrice} onChange={e => setEditItem({ ...editItem, sellingPrice: e.target.value })} />
-          <input type="number" placeholder="Idadi ya Kununua" value={editItem.quantity} onChange={e => setEditItem({ ...editItem, quantity: e.target.value })} />
-          <select value={editItem.category} onChange={e => setEditItem({ ...editItem, category: e.target.value })}>
+          <h3>Edit Medicine</h3>
+
+          <input
+            type="text"
+            value={editItem.name}
+            onChange={e =>
+              setEditItem({ ...editItem, name: e.target.value })
+            }
+          />
+
+          <input
+            type="number"
+            value={editItem.buyingPrice}
+            onChange={e =>
+              setEditItem({ ...editItem, buyingPrice: e.target.value })
+            }
+          />
+
+          <input
+            type="number"
+            value={editItem.sellingPrice}
+            onChange={e =>
+              setEditItem({ ...editItem, sellingPrice: e.target.value })
+            }
+          />
+
+          <input
+            type="number"
+            value={editItem.quantity}
+            onChange={e =>
+              setEditItem({ ...editItem, quantity: e.target.value })
+            }
+          />
+
+          <select
+            value={editItem.category}
+            onChange={e =>
+              setEditItem({ ...editItem, category: e.target.value })
+            }
+          >
             <option value="Painkillers">Painkillers</option>
             <option value="Antibiotics">Antibiotics</option>
             <option value="Orals">Orals</option>
-            <option value="others">Others</option>
+            <option value="Others">Others</option>
           </select>
+
           <div className="dialog-actions">
-            <button className="btn colored" onClick={handleUpdateItem}>Hifadhi</button>
-            <button className="btn danger" onClick={() => setShowEditItemDialog(false)}>Cancel</button>
+            <button className="btn colored" onClick={handleUpdateItem}>
+              Save
+            </button>
+
+            <button className="btn danger" onClick={() => setShowEditItemDialog(false)}>
+              Cancel
+            </button>
           </div>
         </div>
       </div>
