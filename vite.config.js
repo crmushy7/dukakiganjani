@@ -9,8 +9,4 @@ export default defineConfig({
       },
     }),
   ],
-  esbuild: {
-    loader: 'jsx',
-    include: /src\/.*\.js$/, // 👈 THIS is the real fix
-  },
 });
