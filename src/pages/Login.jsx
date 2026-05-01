@@ -8,7 +8,7 @@ const Login = ({ onLogin }) => {
 
   const handleLogin = () => {
 
-    if (email === 'Paulina' && password === 'Medics26') {
+    if (email === 'reha26' && password === 'viane77') {
        onLogin(); 
     } else {
       alert('Jina la mtumiaji au neno la siri si sahihi. Tafadhali jaribu tena.');
