@@ -7,8 +7,9 @@ const Login = ({ onLogin }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = () => {
-    if (email === 'reha26' && password === 'viane727') {
-      onLogin(); 
+
+    if (email === 'Paulina' && password === 'Medics26') {
+       onLogin(); 
     } else {
       alert('Jina la mtumiaji au neno la siri si sahihi. Tafadhali jaribu tena.');
     }
