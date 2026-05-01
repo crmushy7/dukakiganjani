@@ -14,12 +14,12 @@ export default defineConfig({
         theme_color: "#ffffff",
         icons: [
           {
-            src: "../MedicoHub/public/vite.jpg",
+            src: "/vite.jpg",
             sizes: "192x192",
             type: "image/jpg"
           },
           {
-            src: "../MedicoHub/public/vite.jpg",
+            src: "/vite.jpg",
             sizes: "512x512",
             type: "image/jpg"
           }
