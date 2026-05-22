@@ -231,10 +231,42 @@ const Purchases = () => {
 
       <select value={category} onChange={e => setCategory(e.target.value)}>
         <option value="all">All</option>
-        <option value="Painkillers">Painkillers</option>
-        <option value="Antibiotics">Antibiotics</option>
-        <option value="Orals">Orals</option>
-        <option value="Others">Others</option>
+        <option value="Analgesics">Analgesics / Painkillers</option>
+<option value="Antibiotics">Antibiotics</option>
+<option value="Antimalarials">Antimalarials</option>
+<option value="Antifungals">Antifungals</option>
+<option value="Antivirals">Antivirals</option>
+<option value="Antihistamines">Antihistamines</option>
+<option value="Cough Syrups">Cough Syrups</option>
+<option value="Orals">Oral Medicines</option>
+<option value="Injectables">Injectables</option>
+<option value="Vitamins">Vitamins & Supplements</option>
+<option value="Diabetes">Diabetes Medicines</option>
+<option value="Hypertension">Hypertension Medicines</option>
+<option value="Ulcer">Ulcer Medicines</option>
+<option value="Family Planning">Family Planning</option>
+<option value="First Aid">First Aid</option>
+<option value="Dermatology">Skin / Dermatology</option>
+<option value="Eye Care">Eye Care</option>
+<option value="Ear Care">Ear Care</option>
+<option value="Dental Care">Dental Care</option>
+<option value="Pediatric">Pediatric Medicines</option>
+<option value="Women's Health">Women's Health</option>
+<option value="Men's Health">Men's Health</option>
+<option value="Respiratory">Respiratory Medicines</option>
+<option value="Gastrointestinal">Gastrointestinal Medicines</option>
+<option value="Steroids">Steroids</option>
+<option value="Medical Equipment">Medical Equipment</option>
+<option value="Suppositories">Suppositories</option>
+<option value="IV Fluids">IV Fluids</option>
+<option value="Vaccines">Vaccines</option>
+<option value="Hormones">Hormones</option>
+<option value="Anesthetics">Anesthetics</option>
+<option value="Emergency Medicines">Emergency Medicines</option>
+<option value="Herbal Medicines">Herbal Medicines</option>
+<option value="Nutrition">Nutrition Products</option>
+<option value="Laboratory Supplies">Laboratory Supplies</option>
+<option value="Others">Others</option>
       </select>
 
       <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
@@ -405,10 +437,42 @@ const Purchases = () => {
               setNewItem({ ...newItem, category: e.target.value })
             }
           >
-            <option value="Painkillers">Painkillers</option>
-            <option value="Antibiotics">Antibiotics</option>
-            <option value="Orals">Orals</option>
-            <option value="Others">Others</option>
+            <option value="Analgesics">Analgesics / Painkillers</option>
+<option value="Antibiotics">Antibiotics</option>
+<option value="Antimalarials">Antimalarials</option>
+<option value="Antifungals">Antifungals</option>
+<option value="Antivirals">Antivirals</option>
+<option value="Antihistamines">Antihistamines</option>
+<option value="Cough Syrups">Cough Syrups</option>
+<option value="Orals">Oral Medicines</option>
+<option value="Injectables">Injectables</option>
+<option value="Vitamins">Vitamins & Supplements</option>
+<option value="Diabetes">Diabetes Medicines</option>
+<option value="Hypertension">Hypertension Medicines</option>
+<option value="Ulcer">Ulcer Medicines</option>
+<option value="Family Planning">Family Planning</option>
+<option value="First Aid">First Aid</option>
+<option value="Dermatology">Skin / Dermatology</option>
+<option value="Eye Care">Eye Care</option>
+<option value="Ear Care">Ear Care</option>
+<option value="Dental Care">Dental Care</option>
+<option value="Pediatric">Pediatric Medicines</option>
+<option value="Women's Health">Women's Health</option>
+<option value="Men's Health">Men's Health</option>
+<option value="Respiratory">Respiratory Medicines</option>
+<option value="Gastrointestinal">Gastrointestinal Medicines</option>
+<option value="Steroids">Steroids</option>
+<option value="Medical Equipment">Medical Equipment</option>
+<option value="Suppositories">Suppositories</option>
+<option value="IV Fluids">IV Fluids</option>
+<option value="Vaccines">Vaccines</option>
+<option value="Hormones">Hormones</option>
+<option value="Anesthetics">Anesthetics</option>
+<option value="Emergency Medicines">Emergency Medicines</option>
+<option value="Herbal Medicines">Herbal Medicines</option>
+<option value="Nutrition">Nutrition Products</option>
+<option value="Laboratory Supplies">Laboratory Supplies</option>
+<option value="Others">Others</option>
           </select>
 
           <div className="dialog-actions">
@@ -461,17 +525,49 @@ const Purchases = () => {
               setEditItem({ ...editItem, quantity: e.target.value })
             }
           />
-
+<option value="Analgesics">Analgesics / Painkillers</option>
+<option value="Antibiotics">Antibiotics</option>
+<option value="Antimalarials">Antimalarials</option>
+<option value="Antifungals">Antifungals</option>
+<option value="Antivirals">Antivirals</option>
+<option value="Antihistamines">Antihistamines</option>
+<option value="Cough Syrups">Cough Syrups</option>
+<option value="Orals">Oral Medicines</option>
+<option value="Injectables">Injectables</option>
+<option value="Vitamins">Vitamins & Supplements</option>
+<option value="Diabetes">Diabetes Medicines</option>
+<option value="Hypertension">Hypertension Medicines</option>
+<option value="Ulcer">Ulcer Medicines</option>
+<option value="Family Planning">Family Planning</option>
+<option value="First Aid">First Aid</option>
+<option value="Dermatology">Skin / Dermatology</option>
+<option value="Eye Care">Eye Care</option>
+<option value="Ear Care">Ear Care</option>
+<option value="Dental Care">Dental Care</option>
+<option value="Pediatric">Pediatric Medicines</option>
+<option value="Women's Health">Women's Health</option>
+<option value="Men's Health">Men's Health</option>
+<option value="Respiratory">Respiratory Medicines</option>
+<option value="Gastrointestinal">Gastrointestinal Medicines</option>
+<option value="Steroids">Steroids</option>
+<option value="Medical Equipment">Medical Equipment</option>
+<option value="Suppositories">Suppositories</option>
+<option value="IV Fluids">IV Fluids</option>
+<option value="Vaccines">Vaccines</option>
+<option value="Hormones">Hormones</option>
+<option value="Anesthetics">Anesthetics</option>
+<option value="Emergency Medicines">Emergency Medicines</option>
+<option value="Herbal Medicines">Herbal Medicines</option>
+<option value="Nutrition">Nutrition Products</option>
+<option value="Laboratory Supplies">Laboratory Supplies</option>
+<option value="Others">Others</option>
           <select
             value={editItem.category}
             onChange={e =>
               setEditItem({ ...editItem, category: e.target.value })
             }
           >
-            <option value="Painkillers">Painkillers</option>
-            <option value="Antibiotics">Antibiotics</option>
-            <option value="Orals">Orals</option>
-            <option value="Others">Others</option>
+            
           </select>
 
           <div className="dialog-actions">
