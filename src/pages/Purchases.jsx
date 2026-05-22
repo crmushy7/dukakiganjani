@@ -238,7 +238,7 @@ const Purchases = () => {
         <option value="Antiemetics">Antiemetics</option>
         <option value="Anthelmintics">Anthelmintics</option>
         <option value="PPIs">PPIs</option>
-        <option value="Antipyretics">Antipyretics</option>
+        <option value="Anthypertensive">Anthypertensive</option>
         <option value="Antidiabetics">Antidiabetics</option>
         <option value="Cough Syrups">Cough Syrups</option>
         <option value="Bronchodilators">Bronchodilators</option>
@@ -389,7 +389,7 @@ const Purchases = () => {
 
           <input
             type="number"
-            placeholder="Buying Price"
+            placeholder="Total Buying Price"
             value={newItem.buyingPrice}
             onChange={e =>
               setNewItem({ ...newItem, buyingPrice: e.target.value })
@@ -398,7 +398,7 @@ const Purchases = () => {
 
           <input
             type="number"
-            placeholder="Selling Price"
+            placeholder="Selling Price per Item"
             value={newItem.sellingPrice}
             onChange={e =>
               setNewItem({ ...newItem, sellingPrice: e.target.value })
@@ -427,7 +427,7 @@ const Purchases = () => {
 <option value="Antiemetics">Antiemetics</option>
 <option value="Anthelmintics">Anthelmintics</option>
 <option value="PPIs">PPIs</option>
-<option value="Antipyretics">Antipyretics</option>
+<option value="Anthypertensive">Anthypertensive</option>
 <option value="Antidiabetics">Antidiabetics</option>
 <option value="Cough Syrups">Cough Syrups</option>
 <option value="Bronchodilators">Bronchodilators</option>
