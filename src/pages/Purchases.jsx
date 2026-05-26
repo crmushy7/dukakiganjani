@@ -281,8 +281,8 @@ const Purchases = () => {
                 <th>Qty</th>
                 <th>Buying Price</th>
                 <th>Price per Item</th>
-                <th>Selling Price</th>
-                <th>Total</th>
+                <th>Selling Price per Item</th>
+                <th>Total Selling Price</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -300,7 +300,7 @@ const Purchases = () => {
                   <td>{item.buyingPrice}</td>
                   <td>{(item.buyingPrice / item.quantity).toFixed(2)}</td>
                   <td>{item.sellingPrice}</td>
-                  <td>{item.buyingPrice.toLocaleString()}</td>
+                  <td>{(item.sellingPrice*item.quantity).toLocaleString()}</td>
 
                   <td>
                     <button
