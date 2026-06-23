@@ -177,7 +177,7 @@ const scrollToTop = () => {
 
  return (
   <div className="report-container">
-    <h1 className="report-header">📄 MEDICOHUB Report</h1>
+    <h1 className="report-header">📄 Vivian Medics Report</h1>
 
     {/* Top controls */}
     <div className="top-controls">

@@ -218,7 +218,7 @@ const Purchases = () => {
     )}
 
     <h1 className="headertu" style={{ animationDelay: '0s' }}>
-      MedicoHub Purchases
+      Vivian Medics Purchases
     </h1>
 
     <div className="controls animated-section" style={{ animationDelay: '0.1s' }}>
