@@ -73,7 +73,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 0.5rem;
-  min-width: 700px; /* prevents squashing */
+  overflow-x: auto;
 }
 
 th, td {
