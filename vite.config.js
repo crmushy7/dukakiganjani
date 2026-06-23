@@ -9,7 +9,7 @@ export default defineConfig({
       registerType: "autoUpdate",
       manifest: {
         name: "Vivian MedicoHub",
-        short_name: "Vivian Medivs",
+        short_name: "Vivian Medics",
         description: "Medical store management system",
         theme_color: "#ffffff",
         icons: [
