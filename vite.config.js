@@ -8,8 +8,8 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       manifest: {
-        name: "MedicoHub",
-        short_name: "MedicoHub",
+        name: "Vivian MedicoHub",
+        short_name: "Vivian Medivs",
         description: "Medical store management system",
         theme_color: "#ffffff",
         icons: [
