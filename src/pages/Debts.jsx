@@ -163,7 +163,7 @@ const Debts = () => {
   };
 
   const handleDeleteCustomer = async () => {
-    if (deletePassword !== '5891') {
+    if (deletePassword !== 'viane') {
       alert('Wrong password');
       return;
     }
@@ -312,8 +312,8 @@ const Debts = () => {
             onChange={(e) => setPaymentInput({ ...paymentInput, confirmedBy: e.target.value })}
           />
 
-          <button className="card-btn debt" onClick={handleAddPayment} disabled={isSaving}>Save</button>
-          <button className="card-btn delete" onClick={() => setShowPaymentDialog(false)}>Cancel</button>
+          <button className="card-btn debt" onClick={handleAddPayment} disabled={isSaving}>Hifadhi</button>
+          <button className="card-btn delete" onClick={() => setShowPaymentDialog(false)}>Ghairi</button>
         </div>
       )}
 
@@ -343,8 +343,8 @@ const Debts = () => {
             onChange={(e) => setDebtInput({ ...debtInput, amount: e.target.value })}
           />
 
-          <button className="card-btn debt" onClick={handleAddDebt} disabled={isSaving}>Save</button>
-          <button className="card-btn delete" onClick={() => setShowDebtDialog(false)}>Cancel</button>
+          <button className="card-btn debt" onClick={handleAddDebt} disabled={isSaving}>Hifadhi</button>
+          <button className="card-btn delete" onClick={() => setShowDebtDialog(false)}>Ghairi</button>
         </div>
       )}
 
@@ -365,7 +365,7 @@ const Debts = () => {
           <button
           className="card-btn delete"
            onClick={handleDeleteCustomer}>Futa</button>
-          <button className="card-btn delete" onClick={() => setShowDeleteDialog(false)}>Ghairi</button>
+          <button className="card-btn debt" onClick={() => setShowDeleteDialog(false)}>Ghairi</button>
         </div>
       )}
       {showAddOptions && ( 
