@@ -304,24 +304,24 @@ const Purchases = () => {
                   <td>{(item.sellingPrice*item.quantity).toLocaleString()}</td>
                   <td>{((item.sellingPrice - (item.buyingPrice / item.quantity)) * item.quantity).toLocaleString()}</td>
 
-                  <td>
-                    <button
-                      className="btn colored"
-                      onClick={() => {
-                        setEditItem(item);
-                        setShowEditItemDialog(true);
-                      }}
-                    >
-                      Edit
-                    </button>
+                  <td className="actions">
+  <button
+    className="btn colored"
+    onClick={() => {
+      setEditItem(item);
+      setShowEditItemDialog(true);
+    }}
+  >
+    Edit
+  </button>
 
-                    <button
-                      className="btn danger"
-                      onClick={() => handleDeleteItem(item.id, item.name)}
-                    >
-                      Delete
-                    </button>
-                  </td>
+  <button
+    className="btn danger"
+    onClick={() => handleDeleteItem(item.id, item.name)}
+  >
+    Delete
+  </button>
+</td>
                 </tr>
               ))}
             </tbody>
