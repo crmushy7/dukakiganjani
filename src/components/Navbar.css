@@ -1,4 +1,4 @@
-/* ================= NAVBAR ================= */
+/* ================= NAVBAR BASE ================= */
 
 * {
   margin: 0;
@@ -10,43 +10,52 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 15px;
+
   width: 100%;
   padding: 12px 18px;
+
   background-color: #1565c0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+
   flex-wrap: wrap;
 }
 
-/* Links container */
+/* ================= LINKS ================= */
+
 .nav-links {
   display: flex;
   align-items: center;
   gap: 14px;
-  flex-wrap: wrap;
+
   flex: 1;
+  flex-wrap: wrap;
 }
 
-/* Links */
+/* NAV ITEMS */
 .nav-links a {
   text-decoration: none;
   color: white;
   font-weight: 500;
   font-size: 15px;
+
   padding: 6px 0;
   transition: all 0.3s ease;
+
   white-space: nowrap;
+  position: relative;
 }
 
 .nav-links a:hover {
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
+/* ACTIVE STATE */
 .nav-links a.active {
   border-bottom: 2px solid white;
 }
 
-/* Logout area */
+/* ================= LOGOUT ================= */
+
 .logout-link {
   display: flex;
   align-items: center;
@@ -56,15 +65,20 @@
   display: flex;
   align-items: center;
   gap: 6px;
+
   background-color: transparent;
   color: white;
+
   border: 1px solid white;
   padding: 8px 14px;
   border-radius: 20px;
+
   font-size: 14px;
   font-weight: 500;
+
   cursor: pointer;
   transition: all 0.3s ease;
+
   white-space: nowrap;
 }
 
@@ -80,9 +94,11 @@
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   z-index: 2000;
   padding: 15px;
 }
@@ -91,9 +107,11 @@
   background: white;
   padding: 25px 30px;
   border-radius: 12px;
+
   text-align: center;
   width: 100%;
   max-width: 380px;
+
   box-shadow: 0 10px 25px rgba(0,0,0,0.25);
   animation: fadeInScale 0.3s ease forwards;
 }
@@ -104,7 +122,7 @@
   line-height: 1.5;
 }
 
-/* Dialog buttons */
+/* DIALOG BUTTONS */
 .dialog-buttons {
   margin-top: 20px;
   display: flex;
@@ -118,9 +136,11 @@
   border: none;
   padding: 10px 16px;
   border-radius: 7px;
+
   cursor: pointer;
   font-weight: 600;
   min-width: 110px;
+
   transition: 0.3s ease;
 }
 
@@ -143,7 +163,8 @@
   color: white;
 }
 
-/* Animation */
+/* ================= ANIMATION ================= */
+
 @keyframes fadeInScale {
   from {
     opacity: 0;
@@ -155,18 +176,22 @@
   }
 }
 
-/* ================= MOBILE ================= */
+/* ================= MOBILE FIX (IMPORTANT CHANGE) ================= */
 
 @media (max-width: 768px) {
+
   .navbar {
-    padding: 12px;
+    flex-direction: column;
+    align-items: stretch;
     gap: 10px;
   }
 
+  /* Make nav links behave like a grid instead of wrapping mess */
   .nav-links {
     width: 100%;
     justify-content: center;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
   .nav-links a {
@@ -180,15 +205,17 @@
 
   .logout-link button {
     width: 100%;
+    max-width: 240px;
     justify-content: center;
-    max-width: 220px;
   }
 }
 
-/* Small phones */
+/* ================= SMALL PHONES ================= */
+
 @media (max-width: 480px) {
+
   .nav-links {
-    gap: 8px;
+    gap: 6px;
   }
 
   .nav-links a {
