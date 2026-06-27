@@ -73,19 +73,38 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 0.5rem;
-  overflow-x: auto;
+  table-layout: auto; /* Lets columns adjust proportionally */
 }
 
 th, td {
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  vertical-align: top;
+  max-width: none;
+  
+  /* Allow text wrapping by default so columns can narrow down */
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
-th {
-  background-color: #f8bbd0;
-}
+/* 📱 Responsive override for smaller screens (e.g., Tablets and Mobile) */
+@media screen and (max-width: 768px) {
+  .purchases {
+    padding: 0.5rem; /* Give more space to the table */
+  }
 
+  th, td {
+    padding: 4px 6px;       /* Tighten up cell spacing */
+    font-size: 0.75rem;     /* Shrink text size so columns can fit */
+  }
+  
+  /* Force long names to wrap tightly */
+  td:first-child {
+    font-weight: 600;
+  }
+}
 .add-item-button {
   position: fixed;
   bottom: 30px;

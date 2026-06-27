@@ -273,7 +273,7 @@ const Purchases = () => {
         <h3>{date}</h3>
 
         {/* ✅ WRAPPER ADDED HERE */}
-        <div className="table-wrapper">
+        {/* <div className="table-wrapper"> */}
           <table>
             <thead>
               <tr>
@@ -326,7 +326,7 @@ const Purchases = () => {
               ))}
             </tbody>
           </table>
-        </div>
+        {/* </div> */}
 
         <p>
           <strong>Daily Total (Buying): </strong>
