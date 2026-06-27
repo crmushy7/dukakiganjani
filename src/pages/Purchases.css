@@ -63,30 +63,23 @@
   animation: fadeIn 0.5s ease-in-out;
 }
 
-.table-wrapper {
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
+
 
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 0.5rem;
-  table-layout: auto; /* Lets columns adjust proportionally */
+  overflow-x: auto;
 }
 
 th, td {
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
-  vertical-align: top;
-  max-width: none;
-  
-  /* Allow text wrapping by default so columns can narrow down */
-  white-space: normal;
-  overflow-wrap: break-word;
-  word-break: break-word;
+}
+
+th {
+  background-color: #e4105a;
 }
 
 /* 📱 Responsive override for smaller screens (e.g., Tablets and Mobile) */
@@ -116,7 +109,7 @@ th, td {
   border: none;
   color: white;
   cursor: pointer;
-  background-color: #f06292;
+  background-color: #482cd8;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
@@ -365,20 +358,7 @@ h1 {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-td.actions {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  justify-content: center;
 
-  padding: 8px;
-  box-sizing: border-box;
-
-  min-width: 120px;
-
-  /* prevents “floating outside border” effect */
-  overflow: hidden;
-}
 
 /* BUTTONS — keep natural size (NO stretching) */
 td.actions button {
@@ -390,7 +370,7 @@ td.actions button {
   padding: 6px 12px;
 
   text-align: center;
-}
+} */
 
 /* MOBILE BEHAVIOR */
 @media (max-width: 768px) {

@@ -273,7 +273,7 @@ const Purchases = () => {
         <h3>{date}</h3>
 
         {/* ✅ WRAPPER ADDED HERE */}
-        {/* <div className="table-wrapper"> */}
+        <div className="table-wrapper">
           <table>
             <thead>
               <tr>
@@ -282,7 +282,7 @@ const Purchases = () => {
                 <th>Buying Price</th>
                 <th>Price per Item</th>
                 <th>Selling Price per Item</th>
-                <th>Total Selling Price</th>
+                {/* <th>Total Selling Price</th> */}
                 <th>Profit</th>
                 <th>Actions</th>
               </tr>
@@ -301,32 +301,32 @@ const Purchases = () => {
                   <td>{item.buyingPrice}</td>
                   <td>{(item.buyingPrice / item.quantity).toFixed(2)}</td>
                   <td>{item.sellingPrice}</td>
-                  <td>{(item.sellingPrice*item.quantity).toLocaleString()}</td>
+                  {/* <td>{(item.sellingPrice*item.quantity).toLocaleString()}</td> */}
                   <td>{((item.sellingPrice - (item.buyingPrice / item.quantity)) * item.quantity).toLocaleString()}</td>
 
                   <td className="actions">
-  <button
-    className="btn colored"
-    onClick={() => {
-      setEditItem(item);
-      setShowEditItemDialog(true);
-    }}
-  >
-    Edit
-  </button>
+                  <button
+                  className="btn colored"
+                  onClick={() => {
+                    setEditItem(item);
+                    setShowEditItemDialog(true);
+                  }}
+                  >
+                  Edit
+                  </button>
 
-  <button
-    className="btn danger"
-    onClick={() => handleDeleteItem(item.id, item.name)}
-  >
-    Delete
-  </button>
-</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        {/* </div> */}
+                  <button
+                  className="btn danger"
+                  onClick={() => handleDeleteItem(item.id, item.name)}
+                  >
+                  Delete
+                  </button>
+                  </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+        </div>
 
         <p>
           <strong>Daily Total (Buying): </strong>
