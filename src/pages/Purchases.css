@@ -376,5 +376,10 @@ td.actions button {
 
   td.actions button {
     width: 100%;
+
+    /* 🔥 KEY FIX: shrink text instead of breaking layout */
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    white-space: nowrap;
   }
 }
