@@ -64,38 +64,110 @@
 }
 
 
+/* ================= TABLE BASE ================= */
 
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* KEY FIX: predictable column behavior */
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 0.5rem;
-  overflow-x: auto;
+
+  table-layout: auto; /* allow natural sizing */
 }
 
+/* ================= CELLS ================= */
+
 th, td {
-  padding: 8px;
+   font-size: 0.65rem;
+  padding: 8px 10px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+
+  vertical-align: top;
+
+  /* allow proper wrapping instead of forcing width expansion */
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
+
+/* ================= HEADER ================= */
 
 th {
   background-color: #e4105a;
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap; /* keeps headers clean */
 }
 
-/* 📱 Responsive override for smaller screens (e.g., Tablets and Mobile) */
+/* ================= ACTIONS COLUMN ================= */
+
+td.actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+
+  /* IMPORTANT: prevents column from growing too wide */
+  min-width: 120px;
+  max-width: 160px;
+}
+
+/* buttons should NOT influence layout too much */
+td.actions button {
+  white-space: nowrap;
+  flex: 0 0 auto;
+  font-size: 0.85rem;   /* normal desktop size */
+  padding: 5px 10px;
+}
+/* ================= MOBILE OPTIMIZATION (SCALE DOWN MODE) ================= */
+
 @media screen and (max-width: 768px) {
+
   .purchases {
-    padding: 0.5rem; /* Give more space to the table */
+    padding: 0.4rem;
+    transform: scale(0.85);
+    transform-origin: top left;
+    overflow-x: auto;
+    width: 117%; /* compensates shrink so layout doesn't collapse */
+  }
+
+  table {
+    table-layout: fixed; /* forces columns to fit within container */
+    font-size: 0.65rem; /* global table text shrink */
   }
 
   th, td {
-    padding: 4px 6px;       /* Tighten up cell spacing */
-    font-size: 0.75rem;     /* Shrink text size so columns can fit */
+    padding: 4px 6px;
+    font-size: 0.65rem;
+    white-space: nowrap; /* 🔥 prevents breaking or wrapping */
   }
-  
-  /* Force long names to wrap tightly */
-  td:first-child {
-    font-weight: 600;
+
+  th {
+    font-size: 0.78rem;
+  }
+
+  /* KEEP ACTIONS IN SAME ROW ALWAYS */
+  td.actions {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap; /* NO stacking */
+    min-width: 120px;
+  }
+
+  td.actions button {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+    white-space: nowrap;
   }
 }
 .add-item-button {
