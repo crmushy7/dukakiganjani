@@ -192,6 +192,10 @@
     font-size: 1.35rem;
     line-height: 1.4;
   }
+  .summary-cards {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 8px;
+  }
 
   .card {
     padding: 15px;
