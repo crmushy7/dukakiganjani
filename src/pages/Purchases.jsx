@@ -207,6 +207,7 @@ const Purchases = () => {
   };
 
  return (
+  <>
   <div className="purchases">
     {loading && (
       <div className="loader-overlay">
@@ -362,17 +363,7 @@ const Purchases = () => {
       </div>
     )}
 
-    <button
-      className="add-item-button colored animated-section"
-      style={{
-        animationDelay: `${
-          0.3 + Object.entries(groupedItems).length * 0.1
-        }s`,
-      }}
-      onClick={() => setShowAddItemDialog(true)}
-    >
-      +
-    </button>
+    
 
     {/* ADD ITEM DIALOG */}
     {showAddItemDialog && (
@@ -534,6 +525,18 @@ const Purchases = () => {
       </div>
     )}
   </div>
+  <button
+      className="add-item-button colored animated-section"
+      style={{
+        animationDelay: `${
+          0.3 + Object.entries(groupedItems).length * 0.1
+        }s`,
+      }}
+      onClick={() => setShowAddItemDialog(true)}
+    >
+      +
+    </button>
+    </>
 );
 
 };

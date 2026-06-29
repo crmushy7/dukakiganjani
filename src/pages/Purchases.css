@@ -128,7 +128,6 @@ td.actions button {
   padding: 5px 10px;
 }
 /* ================= MOBILE OPTIMIZATION (SCALE DOWN MODE) ================= */
-
 @media screen and (max-width: 768px) {
 
   .purchases {
@@ -136,32 +135,71 @@ td.actions button {
     transform: scale(0.85);
     transform-origin: top left;
     overflow-x: auto;
-    width: 117%; /* compensates shrink so layout doesn't collapse */
+    width: 117%;
   }
 
   table {
-    table-layout: fixed; /* forces columns to fit within container */
-    font-size: 0.65rem; /* global table text shrink */
+    table-layout: fixed;
+    font-size: 0.65rem;
   }
 
-  th, td {
+  th,
+  td {
     padding: 4px 6px;
     font-size: 0.65rem;
-    white-space: nowrap; /* 🔥 prevents breaking or wrapping */
+    white-space: nowrap;
   }
 
-  th {
-    font-size: 0.78rem;
+  /* 🔥 Name column gets more space */
+  th:nth-child(1),
+  td:nth-child(1) {
+    width: 30%;
+     text-overflow: ellipsis;
+  overflow: hidden;
   }
 
-  /* KEEP ACTIONS IN SAME ROW ALWAYS */
+  /* Qty */
+  th:nth-child(2),
+  td:nth-child(2) {
+    width: 8%;
+  }
+
+  /* Buying Price */
+  th:nth-child(3),
+  td:nth-child(3) {
+    width: 12%;
+  }
+
+  /* Price per Item */
+  th:nth-child(4),
+  td:nth-child(4) {
+    width: 12%;
+  }
+
+  /* Selling Price */
+  th:nth-child(5),
+  td:nth-child(5) {
+    width: 12%;
+  }
+
+  /* Profit */
+  th:nth-child(6),
+  td:nth-child(6) {
+    width: 12%;
+  }
+
+  /* Actions */
+  th:nth-child(7),
+  td:nth-child(7) {
+    width: 20%;
+  }
+
   td.actions {
     display: flex;
     gap: 6px;
     justify-content: center;
     align-items: center;
-    flex-wrap: nowrap; /* NO stacking */
-    min-width: 120px;
+    flex-wrap: nowrap;
   }
 
   td.actions button {
@@ -172,17 +210,30 @@ td.actions button {
 }
 .add-item-button {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  font-size: 2rem;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+
   width: 50px;
   height: 50px;
   border-radius: 50%;
+
   border: none;
   color: white;
   cursor: pointer;
+
   background-color: #482cd8;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 768px) {
+  .add-item-button {
+    bottom: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    font-size: 1.5rem;
+  }
 }
 
 .add-item-button:hover {
