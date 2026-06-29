@@ -20,13 +20,17 @@ const Others = () => {
   const [showEntryDialog, setShowEntryDialog] = useState(false);
 
   const [totals, setTotals] = useState({ income: 0, expense: 0 });
-  const [filter, setFilter] = useState('all');
 
   const [loading, setLoading] = useState(false);
 
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [deleteItem, setDeleteItem] = useState(null);
   const [deletePassword, setDeletePassword] = useState('');
+
+  // NEW DATE RANGE FILTER
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [appliedRange, setAppliedRange] = useState(null);
 
   // ---------------- GROUP BY DATE ----------------
   const groupByDate = (items) => {
@@ -39,25 +43,19 @@ const Others = () => {
     return grouped;
   };
 
-  // ---------------- FILTER ----------------
-  const applyFilter = (items) => {
-    const now = new Date();
+  // ---------------- DATE FILTER ----------------
+  const applyDateRange = (items) => {
+    if (!appliedRange) return items;
+
+    const { start, end } = appliedRange;
+
     return items.filter((item) => {
       const d = item.date.toDate();
 
-      if (filter === 'daily') {
-        return d.toDateString() === now.toDateString();
-      } else if (filter === 'weekly') {
-        const weekAgo = new Date();
-        weekAgo.setDate(now.getDate() - 7);
-        return d >= weekAgo;
-      } else if (filter === 'monthly') {
-        return (
-          d.getMonth() === now.getMonth() &&
-          d.getFullYear() === now.getFullYear()
-        );
-      }
-      return true;
+      const startOk = start ? d >= new Date(start) : true;
+      const endOk = end ? d <= new Date(end + 'T23:59:59') : true;
+
+      return startOk && endOk;
     });
   };
 
@@ -78,8 +76,8 @@ const Others = () => {
       ...doc.data(),
     }));
 
-    const incomeData = applyFilter(incomeRaw);
-    const expenseData = applyFilter(expenseRaw);
+    const incomeData = applyDateRange(incomeRaw);
+    const expenseData = applyDateRange(expenseRaw);
 
     const incomeTotal = incomeData.reduce(
       (sum, r) => sum + Number(r.amount || 0),
@@ -101,23 +99,18 @@ const Others = () => {
 
   // ---------------- SAVE ----------------
   const handleSave = async () => {
-    if (!entry.amount || isNaN(entry.amount)) {
-      return alert('Amount required');
-    }
+    if (!entry.amount || isNaN(entry.amount)) return;
 
     try {
       setLoading(true);
 
-      const now = Timestamp.now();
-
       const data = {
         amount: Number(entry.amount),
         notes: entry.notes,
-        date: now,
+        date: Timestamp.now(),
       };
 
-      const col =
-        typeToAdd === 'income' ? 'income' : 'expenses';
+      const col = typeToAdd === 'income' ? 'income' : 'expenses';
 
       await addDoc(collection(db, col), data);
 
@@ -125,9 +118,6 @@ const Others = () => {
       setShowEntryDialog(false);
 
       await fetchRecords();
-    } catch (err) {
-      console.error(err);
-      alert('Failed to save');
     } finally {
       setLoading(false);
     }
@@ -143,10 +133,7 @@ const Others = () => {
     try {
       setLoading(true);
 
-      const col =
-        deleteItem.type === 'income'
-          ? 'income'
-          : 'expenses';
+      const col = deleteItem.type === 'income' ? 'income' : 'expenses';
 
       await deleteDoc(doc(db, col, deleteItem.id));
 
@@ -155,9 +142,6 @@ const Others = () => {
       setShowDeleteDialog(false);
 
       await fetchRecords();
-    } catch (err) {
-      console.error(err);
-      alert('Delete failed');
     } finally {
       setLoading(false);
     }
@@ -165,80 +149,83 @@ const Others = () => {
 
   useEffect(() => {
     fetchRecords();
-  }, [filter]);
+  }, [appliedRange]);
 
   return (
     <div className="others-page">
 
-      {/* TITLE */}
-      <h1 className="animated-section">
-        MATUMIZI MENGINE YA FEDHA
-      </h1>
+      <h1>MATUMIZI MENGINE YA FEDHA</h1>
 
-      {/* FILTERS */}
-      <div className="filter-buttons animated-section">
-        <button onClick={() => setFilter('all')}>Yote</button>
-        <button onClick={() => setFilter('daily')}>Siku</button>
-        <button onClick={() => setFilter('weekly')}>Wiki</button>
-        <button onClick={() => setFilter('monthly')}>Mwezi</button>
+      {/* DATE RANGE FILTER */}
+      <div className="filter-row">
+        <input
+          type="date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+        />
+
+        <input
+          type="date"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+        />
+
+        <button
+          onClick={() => {
+            setAppliedRange({
+              start: startDate,
+              end: endDate,
+            });
+            fetchRecords();
+          }}
+        >
+          Refresh
+        </button>
       </div>
 
       {/* TOTALS */}
-      <div className="totals animated-section">
-        <p>
-          <strong>Income:</strong> Tsh{' '}
-          {totals.income.toLocaleString()}
-        </p>
-        <p>
-          <strong>Expense:</strong> Tsh{' '}
-          {totals.expense.toLocaleString()}
-        </p>
+      <div className="totals">
+        <p>Income: Tsh {totals.income.toLocaleString()}</p>
+        <p>Expense: Tsh {totals.expense.toLocaleString()}</p>
       </div>
 
       {/* RECORDS */}
       <div className="sections">
         {['income', 'expense'].map((type) => (
           <div key={type}>
-            <h2>
-              {type === 'income'
-                ? 'Income'
-                : 'Expenses'}
-            </h2>
+            <h2>{type.toUpperCase()}</h2>
 
-            {Object.entries(records[type]).map(
-              ([date, entries]) => (
-                <div key={date}>
-                  <h4>{date}</h4>
+            {Object.entries(records[type]).map(([date, entries]) => (
+              <div key={date}>
+                <h4>{date}</h4>
 
-                  <ul>
-                    {entries.map((e) => (
-                     <li className="record-item">
-  <div className="record-info">
-    Tsh {e.amount} - {e.notes || 'No note'}
-  </div>
+                <ul>
+                  {entries.map((e) => (
+                    <li className="record-item" key={e.id}>
+                      <div className="record-info">
+                        Tsh {e.amount} - {e.notes || 'No note'}
+                      </div>
 
-  <div className="record-actions">
-    <button
-      className="delete-btn"
-      onClick={() => {
-        setDeleteItem({ ...e, type });
-        setShowDeleteDialog(true);
-      }}
-    >
-      Delete
-    </button>
-  </div>
-</li>
-                    ))}
-                  </ul>
-                </div>
-              )
-            )}
+                      <div className="record-actions">
+                        <button
+                          onClick={() => {
+                            setDeleteItem({ ...e, type });
+                            setShowDeleteDialog(true);
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         ))}
       </div>
 
-      {/* SAVE LOADER */}
+      {/* LOADER */}
       {loading && (
         <div className="loader-overlay">
           <div className="loading-box">
@@ -248,7 +235,7 @@ const Others = () => {
         </div>
       )}
 
-      {/* DELETE CONFIRM */}
+      {/* DELETE DIALOG */}
       {showDeleteDialog && (
         <div className="dialog-overlay">
           <div className="dialog">
@@ -256,132 +243,17 @@ const Others = () => {
 
             <input
               type="password"
-              placeholder="Enter password"
               value={deletePassword}
-              onChange={(e) =>
-                setDeletePassword(e.target.value)
-              }
+              onChange={(e) => setDeletePassword(e.target.value)}
             />
 
-            <div className="dialog-buttons">
-              <button onClick={handleDelete}>
-                Delete
-              </button>
-
-              <button
-                onClick={() => {
-                  setShowDeleteDialog(false);
-                  setDeletePassword('');
-                }}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* TYPE DIALOG */}
-      {showTypeDialog && (
-        <div className="dialog-overlay">
-          <div className="dialog">
-            <h3>Add Type</h3>
-
-            <button
-              onClick={() => {
-                setTypeToAdd('income');
-                setShowEntryDialog(true);
-                setShowTypeDialog(false);
-              }}
-            >
-              Income
-            </button>
-
-            <button
-              onClick={() => {
-                setTypeToAdd('expense');
-                setShowEntryDialog(true);
-                setShowTypeDialog(false);
-              }}
-            >
-              Expense
-            </button>
-
-            <button
-              onClick={() =>
-                setShowTypeDialog(false)
-              }
-            >
+            <button onClick={handleDelete}>Delete</button>
+            <button onClick={() => setShowDeleteDialog(false)}>
               Cancel
             </button>
           </div>
         </div>
       )}
-
-      {/* ENTRY DIALOG */}
-      {showEntryDialog && (
-        <div className="dialog-overlay">
-          <div className="dialog">
-            <h3>
-              New{' '}
-              {typeToAdd === 'income'
-                ? 'Income'
-                : 'Expense'}
-            </h3>
-
-            <input
-              type="number"
-              placeholder="Amount"
-              value={entry.amount}
-              onChange={(e) =>
-                setEntry({
-                  ...entry,
-                  amount: e.target.value,
-                })
-              }
-            />
-
-            <input
-              type="text"
-              placeholder="Notes"
-              value={entry.notes}
-              onChange={(e) =>
-                setEntry({
-                  ...entry,
-                  notes: e.target.value,
-                })
-              }
-            />
-
-            <div className="dialog-buttons">
-              <button
-                onClick={handleSave}
-                disabled={loading}
-              >
-                {loading ? 'Saving...' : 'Save'}
-              </button>
-
-              <button
-                onClick={() =>
-                  setShowEntryDialog(false)
-                }
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* FLOAT BUTTON */}
-      <button
-        className="floating-add-btn"
-        onClick={() =>
-          setShowTypeDialog(true)
-        }
-      >
-        +
-      </button>
     </div>
   );
 };
