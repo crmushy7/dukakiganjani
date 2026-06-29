@@ -41,7 +41,7 @@
 }
 
 .btn.colored {
-  background-color: #f06292;
+  background-color: #4d2dcb;
   color: white;
 }
 
@@ -173,7 +173,7 @@ td.actions button {
   /* Price per Item */
   th:nth-child(4),
   td:nth-child(4) {
-    width: 14%;
+    width: 16%;
   }
 
   /* Selling Price */
@@ -194,22 +194,22 @@ td.actions button {
     width: 20%;
   }
 
-  td.actions {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 6px;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: nowrap;
-  }
+ td.actions {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+}
 
-  td.actions button {
-    font-size: 0.55rem;   /* smaller text */
-    padding: 2px 5px;     /* reduce height + width */
-    min-width: 35px;      /* prevents too much shrink */
-    width: auto;          /* prevents stretching */
-    white-space: nowrap;
-  }
+td.actions button {
+  font-size: 0.55rem;   /* small but readable */
+  padding: 1px 4px;     /* reduces size properly */
+  min-width: unset;     /* removes forced width limits */
+  width: auto;           /* natural sizing */
+  white-space: nowrap;
+  line-height: 1;
+}
 }
 .add-item-button {
   position: fixed;
