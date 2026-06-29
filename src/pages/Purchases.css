@@ -161,7 +161,7 @@ td.actions button {
   /* Qty */
   th:nth-child(2),
   td:nth-child(2) {
-    width: 8%;
+    width: 10%;
   }
 
   /* Buying Price */
@@ -173,7 +173,7 @@ td.actions button {
   /* Price per Item */
   th:nth-child(4),
   td:nth-child(4) {
-    width: 12%;
+    width: 14%;
   }
 
   /* Selling Price */

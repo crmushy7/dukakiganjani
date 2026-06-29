@@ -212,28 +212,23 @@ const Others = () => {
 
                   <ul>
                     {entries.map((e) => (
-                      <li
-                        key={e.id}
-                        className="record-item"
-                      >
-                        <span>
-                          Tsh {e.amount} -{' '}
-                          {e.notes || 'No note'}
-                        </span>
+                     <li className="record-item">
+  <div className="record-info">
+    Tsh {e.amount} - {e.notes || 'No note'}
+  </div>
 
-                        <button
-                          className="delete-btn"
-                          onClick={() => {
-                            setDeleteItem({
-                              ...e,
-                              type,
-                            });
-                            setShowDeleteDialog(true);
-                          }}
-                        >
-                          Delete
-                        </button>
-                      </li>
+  <div className="record-actions">
+    <button
+      className="delete-btn"
+      onClick={() => {
+        setDeleteItem({ ...e, type });
+        setShowDeleteDialog(true);
+      }}
+    >
+      Delete
+    </button>
+  </div>
+</li>
                     ))}
                   </ul>
                 </div>

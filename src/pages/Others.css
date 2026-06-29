@@ -227,10 +227,23 @@
 }
 .record-item {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* KEY: pushes button to far right */
   align-items: center;
   gap: 10px;
-  margin-bottom: 6px;
+
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.record-info {
+  flex: 1;              /* takes all available space */
+  min-width: 0;        /* allows proper shrinking */
+}
+
+.record-actions {
+  flex-shrink: 0;      /* prevents button collapse */
+  display: flex;
+  align-items: center;
 }
 
 .delete-btn {
@@ -240,6 +253,7 @@
   padding: 5px 10px;
   border-radius: 6px;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .delete-btn:hover {
