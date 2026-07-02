@@ -27,7 +27,7 @@ const Others = () => {
   const [deleteItem, setDeleteItem] = useState(null);
   const [deletePassword, setDeletePassword] = useState('');
 
-  // NEW DATE RANGE FILTER
+  // DATE RANGE FILTER
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [appliedRange, setAppliedRange] = useState(null);
@@ -172,11 +172,7 @@ const Others = () => {
 
         <button
           onClick={() => {
-            setAppliedRange({
-              start: startDate,
-              end: endDate,
-            });
-            fetchRecords();
+            setAppliedRange({ start: startDate, end: endDate });
           }}
         >
           Refresh
@@ -225,12 +221,78 @@ const Others = () => {
         ))}
       </div>
 
-      {/* LOADER */}
-      {loading && (
-        <div className="loader-overlay">
-          <div className="loading-box">
-            <div className="loader"></div>
-            <p>Processing...</p>
+      {/* FLOATING + BUTTON (RESTORED) */}
+      <button
+        className="floating-add-btn"
+        onClick={() => setShowTypeDialog(true)}
+      >
+        +
+      </button>
+
+      {/* TYPE SELECT DIALOG */}
+      {showTypeDialog && (
+        <div className="dialog-overlay">
+          <div className="dialog">
+            <h3>Add Type</h3>
+
+            <button
+              onClick={() => {
+                setTypeToAdd('income');
+                setShowTypeDialog(false);
+                setShowEntryDialog(true);
+              }}
+            >
+              Income
+            </button>
+
+            <button
+              onClick={() => {
+                setTypeToAdd('expense');
+                setShowTypeDialog(false);
+                setShowEntryDialog(true);
+              }}
+            >
+              Expense
+            </button>
+
+            <button onClick={() => setShowTypeDialog(false)}>
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ENTRY DIALOG */}
+      {showEntryDialog && (
+        <div className="dialog-overlay">
+          <div className="dialog">
+            <h3>New {typeToAdd}</h3>
+
+            <input
+              type="number"
+              placeholder="Amount"
+              value={entry.amount}
+              onChange={(e) =>
+                setEntry({ ...entry, amount: e.target.value })
+              }
+            />
+
+            <input
+              type="text"
+              placeholder="Notes"
+              value={entry.notes}
+              onChange={(e) =>
+                setEntry({ ...entry, notes: e.target.value })
+              }
+            />
+
+            <button onClick={handleSave} disabled={loading}>
+              {loading ? 'Saving...' : 'Save'}
+            </button>
+
+            <button onClick={() => setShowEntryDialog(false)}>
+              Cancel
+            </button>
           </div>
         </div>
       )}
@@ -244,7 +306,9 @@ const Others = () => {
             <input
               type="password"
               value={deletePassword}
-              onChange={(e) => setDeletePassword(e.target.value)}
+              onChange={(e) =>
+                setDeletePassword(e.target.value)
+              }
             />
 
             <button onClick={handleDelete}>Delete</button>

@@ -297,9 +297,111 @@
   font-weight: 600;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
+/* ================= MOBILE OPTIMIZATION ================= */
+@media (max-width: 768px) {
+
+  .debts {
+    padding: 10px;
+  }
+
+  /* TITLE */
+  .debts h1 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+
+  .debts h2 {
+    font-size: 1rem;
+  }
+
+  /* SEARCH */
+  .search-input {
+    max-width: 100%;
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+
+  /* SECTION CARDS */
+  .debts section {
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  /* DEBT CARD - compact layout */
+  .debt-card {
+    padding: 10px;
+  }
+
+  /* HEADER inside card */
+  .card-header {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* TEXT INSIDE CARD */
+  .card-summary {
+    font-size: 0.75rem;
+  }
+
+  .card-details {
+    font-size: 0.7rem;
+    max-height: 160px;
+  }
+
+  /* BUTTON GROUP */
+  .card-buttons {
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  /* BUTTONS SMALLER */
+  .card-btn {
+    font-size: 0.65rem;
+    padding: 4px 7px;
+    border-radius: 5px;
+  }
+
+  /* DELETE BUTTON EXTRA SMALL EMPHASIS CONTROL */
+  .card-btn.delete {
+    padding: 4px 8px;
+    font-size: 0.6rem;
+  }
+
+  /* FLOATING BUTTON SMALLER BUT ACCESSIBLE */
+  .floating-add-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 22px;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  /* ADD OPTIONS */
+  .add-options {
+    right: 15px;
+    bottom: 80px;
+  }
+
+  .add-options button {
+    font-size: 0.7rem;
+    padding: 8px 10px;
+  }
+
+  /* DIALOG */
   .payment-dialog {
-    width: 90%;
+    width: 92%;
+    padding: 15px;
+  }
+
+  .payment-dialog input,
+  .payment-dialog textarea {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+
+  .save-btn {
+    font-size: 0.75rem;
+    padding: 6px 10px;
   }
 }
