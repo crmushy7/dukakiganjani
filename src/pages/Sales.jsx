@@ -13,6 +13,9 @@ import {
 } from 'firebase/firestore';
 
 import './Sales.css';
+import { useRef } from 'react';
+
+
 
 const Sales = () => {
   const [sales, setSales] = useState([]);
@@ -26,34 +29,87 @@ const Sales = () => {
   const [removingId, setRemovingId] = useState(null);
   const [addingId, setAddingId] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [itemNameSuggestions, setItemNameSuggestions] = useState({});
+  const formRef = useRef(null);
 
   useEffect(() => {
     fetchSales();
     fetchPurchases();
   }, []);
+  useEffect(() => {
+  const handleClickOutside = (e) => {
+    if (formRef.current && !formRef.current.contains(e.target)) {
+      setItemNameSuggestions({}); // close item dropdown
+      setCustomerSuggestions([]); // close customer dropdown
+    }
+  };
+
+  document.addEventListener('mousedown', handleClickOutside);
+  return () => document.removeEventListener('mousedown', handleClickOutside);
+}, []);
 
   const fetchSales = async () => {
     const querySnapshot = await getDocs(collection(db, 'sales'));
     const salesList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     setSales(salesList);
   };
-
   const fetchPurchases = async () => {
-    const querySnapshot = await getDocs(collection(db, 'purchases'));
-    const purchaseList = querySnapshot.docs.map(doc => doc.data());
+  try {
+    const querySnapshot = await getDocs(collection(db, 'items'));
+
+    console.log("Documents found:", querySnapshot.size);
+
+    const purchaseList = querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+
+    console.log("Purchase List:", purchaseList);
+
     setPurchases(purchaseList);
-  };
+  } catch (error) {
+    console.error("Error fetching items:", error);
+  }
+};
+
+//   const fetchPurchases = async () => {
+//   const querySnapshot = await getDocs(collection(db, 'items'));
+
+//   const purchaseList = querySnapshot.docs.map(doc => ({
+//     id: doc.id,
+//     ...doc.data()
+//   }));
+
+//   setPurchases(purchaseList);
+// };
 
   const handleItemInput = (value, index) => {
-    const updatedItems = [...saleItems];
-    updatedItems[index].itemName = value;
-    setSaleItems(updatedItems);
+    console.log("Purchases state:", purchases);
+  const updatedItems = [...saleItems];
+  updatedItems[index].itemName = value;
+  setSaleItems(updatedItems);
 
-    const filtered = purchases.map(p => p.itemName)
-      .filter(name => name.toLowerCase().startsWith(value.toLowerCase()));
+  if (!value) {
+    setItemNameSuggestions(prev => ({
+      ...prev,
+      [index]: []
+    }));
+    return;
+  }
 
-    setSuggestions([...new Set(filtered)]);
-  };
+  const filtered = purchases
+  .map(p => p.name)
+  .filter(name =>
+    name?.toLowerCase().includes(value.toLowerCase())
+  );
+
+console.log("Filtered:", filtered);
+
+  setItemNameSuggestions(prev => ({
+    ...prev,
+    [index]: [...new Set(filtered)].slice(0, 6)
+  }));
+};
 
   const handleCustomerInput = (value) => {
     setCustomerName(value);
@@ -210,7 +266,7 @@ const Sales = () => {
     <div className="sales">
       <h2 className='sales-title'>💊 Medical Sales Record</h2>
 
-      <div className="form animated-section" style={{ animationDelay: '0.1s' }}>
+      <div className="form animated-section" ref={formRef} style={{ animationDelay: '0.1s' }}>
       {saleItems.map((item, index) => (
         <div
           key={index}
@@ -223,16 +279,19 @@ const Sales = () => {
             value={item.itemName}
             onChange={(e) => handleItemInput(e.target.value, index)}
           />
-          {suggestions.length > 0 && (
+          {itemNameSuggestions[index]?.length > 0 && (
             <ul className="suggestion-list animated-section" style={{ animationDelay: '0.2s' }}>
-              {suggestions.map((name, i) => (
+              {itemNameSuggestions[index].map((name, i) => (
                 <li
                   key={i}
                   onClick={() => {
                     const updated = [...saleItems];
                     updated[index].itemName = name;
                     setSaleItems(updated);
-                    setSuggestions([]);
+                    setItemNameSuggestions(prev => ({
+                    ...prev,
+                    [index]: []
+                  }));
                   }}
                 >
                   {name}

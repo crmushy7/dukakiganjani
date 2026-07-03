@@ -30,6 +30,8 @@
   max-width: 800px;
   margin: 0 auto 30px;
   gap: 10px;
+  overflow: visible;
+  isolation: isolate;
 }
 
 .form input,
@@ -61,6 +63,8 @@
   gap: 10px;
   flex-wrap: wrap;
   position: relative;
+  z-index: 1;
+  overflow: visible;
 }
 
 .sale-row input {
@@ -88,9 +92,11 @@
   right: 0;
   background: white;
   border: 1px solid #cfd8dc;
-  max-height: 200px;
+  max-height: 250px;
   overflow-y: auto;
-  z-index: 10;
+  z-index: 9999;
+  overflow-y: auto;
+  scrollbar-width: thin;   
 }
 
 .suggestion-list li {
