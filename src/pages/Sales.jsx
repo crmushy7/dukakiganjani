@@ -13,8 +13,6 @@ import {
 } from 'firebase/firestore';
 
 import './Sales.css';
-import { useRef } from 'react';
-
 
 
 const Sales = () => {
@@ -30,23 +28,11 @@ const Sales = () => {
   const [addingId, setAddingId] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [itemNameSuggestions, setItemNameSuggestions] = useState({});
-  const formRef = useRef(null);
 
   useEffect(() => {
     fetchSales();
     fetchPurchases();
   }, []);
-  useEffect(() => {
-  const handleClickOutside = (e) => {
-    if (formRef.current && !formRef.current.contains(e.target)) {
-      setItemNameSuggestions({}); // close item dropdown
-      setCustomerSuggestions([]); // close customer dropdown
-    }
-  };
-
-  document.addEventListener('mousedown', handleClickOutside);
-  return () => document.removeEventListener('mousedown', handleClickOutside);
-}, []);
 
   const fetchSales = async () => {
     const querySnapshot = await getDocs(collection(db, 'sales'));
@@ -266,7 +252,7 @@ console.log("Filtered:", filtered);
     <div className="sales">
       <h2 className='sales-title'>💊 Medical Sales Record</h2>
 
-      <div className="form animated-section" ref={formRef} style={{ animationDelay: '0.1s' }}>
+      <div className="form animated-section" style={{ animationDelay: '0.1s' }}>
       {saleItems.map((item, index) => (
         <div
           key={index}
