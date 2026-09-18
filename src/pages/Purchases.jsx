@@ -27,6 +27,8 @@ const Purchases = () => {
   const [addingId, setAddingId] = useState(null);
   const [removingId, setRemovingId] = useState(null);
   const [loading, setLoading] = useState(false); // Loader state
+  const [medicineSuggestions, setMedicineSuggestions] = useState([]);
+const [allMedicineNames, setAllMedicineNames] = useState([]);
 
   useEffect(() => {
     fetchItems();
@@ -46,10 +48,43 @@ const Purchases = () => {
           new Date(a.dateAdded.split(' ')[0].split('-').reverse().join('-'))
       );
       setItems(itemsList);
+     const uniqueMedicines = [];
+
+itemsList.forEach(item => {
+  const exists = uniqueMedicines.find(
+    med => med.name.toLowerCase() === item.name.toLowerCase()
+  );
+
+  if (!exists) {
+    uniqueMedicines.push({
+      name: item.name,
+      sellingPrice: item.sellingPrice,
+      category: item.category,
+    });
+  }
+});
+
+setAllMedicineNames(uniqueMedicines);
     } catch (error) {
       console.error('Error fetching items:', error);
     }
   };
+  
+  
+  const handleMedicineInput = (value) => {
+  setNewItem({ ...newItem, name: value });
+
+  if (!value.trim()) {
+    setMedicineSuggestions([]);
+    return;
+  }
+
+  const filtered = allMedicineNames.filter(med =>
+    med.name.toLowerCase().includes(value.toLowerCase())
+  );
+
+  setMedicineSuggestions(filtered);
+};
 
   const groupByDate = (items) => {
     const groups = {};
@@ -371,14 +406,39 @@ const Purchases = () => {
         <div className="dialog scale-in">
           <h3>Add New Medicine</h3>
 
-          <input
-            type="text"
-            placeholder="Medicine Name"
-            value={newItem.name}
-            onChange={e =>
-              setNewItem({ ...newItem, name: e.target.value })
-            }
-          />
+          <div className="medicine-input-wrapper">
+  <input
+    type="text"
+    placeholder="Medicine Name"
+    value={newItem.name}
+    onChange={e => handleMedicineInput(e.target.value)}
+  />
+
+  {medicineSuggestions.length > 0 && (
+    <ul
+      className="suggestion-list animated-section"
+      style={{ animationDelay: '0.2s' }}
+    >
+      {medicineSuggestions.map((medicine, i) => (
+  <li
+    key={i}
+    onClick={() => {
+      setNewItem({
+        ...newItem,
+        name: medicine.name,
+        sellingPrice: medicine.sellingPrice,
+        category: medicine.category,
+      });
+
+      setMedicineSuggestions([]);
+    }}
+  >
+    {medicine.name}
+  </li>
+))}
+    </ul>
+  )}
+</div>
 
           <input
             type="number"

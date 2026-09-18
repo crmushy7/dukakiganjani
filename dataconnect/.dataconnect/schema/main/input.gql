@@ -62,6 +62,10 @@ input Movie_Data {
   ✨ Generated from Field `Movie`.`reviews_on_movie` of type `[Review!]!`
   """
   reviews_on_movie: [Review_Data!]
+  """
+  ✨ Generated from Field `Movie`.`movieMetadata_on_movie` of type `MovieMetadata`
+  """
+  movieMetadata_on_movie: MovieMetadata_Data
 }
 """
 ✨ Generated filter input type for table 'Movie'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
