@@ -9,7 +9,7 @@ export default defineConfig({
       registerType: "autoUpdate",
       manifest: {
         name: "Vivian MedicoHub",
-        short_name: "Vivian Medics",
+        short_name: "Duka Kiganjani",
         description: "Medical store management system",
         theme_color: "#ffffff",
         icons: [

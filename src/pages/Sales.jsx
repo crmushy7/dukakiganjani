@@ -250,7 +250,7 @@ console.log("Filtered:", filtered);
 
   return (
     <div className="sales">
-      <h2 className='sales-title'>💊 Medical Sales Record</h2>
+      <h2 className='sales-title'>Duka Kiganjani Sales Record</h2>
 
       <div className="form animated-section" style={{ animationDelay: '0.1s' }}>
       {saleItems.map((item, index) => (
@@ -261,7 +261,7 @@ console.log("Filtered:", filtered);
         >
           <input
             type="text"
-            placeholder="Jina la Dawa"
+            placeholder="Jina la Bidhaa"
             value={item.itemName}
             onChange={(e) => handleItemInput(e.target.value, index)}
           />
@@ -287,7 +287,7 @@ console.log("Filtered:", filtered);
           )}
           <input
             type="number"
-            placeholder="Idadi ya Dawa"
+            placeholder="Idadi ya Bidhaa"
             value={item.quantity}
             onChange={(e) => {
               const updated = [...saleItems];
@@ -313,7 +313,7 @@ console.log("Filtered:", filtered);
         </div>
       ))}
       <button className="animated-section" style={{ animationDelay: '0.3s' }} onClick={addItemRow}>
-        + Ongeza dawa nyingine
+        + Ongeza Bidhaa nyingine
       </button>
 
       <select value={paymentType} onChange={(e) => setPaymentType(e.target.value)}>

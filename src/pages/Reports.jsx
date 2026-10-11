@@ -177,7 +177,7 @@ const scrollToTop = () => {
 
  return (
   <div className="report-container">
-    <h1 className="report-header">📄 Vivian Medics Report</h1>
+    <h1 className="report-header">📄 Duka Kiganjani Report</h1>
 
     {/* Top controls */}
     <div className="top-controls">
@@ -219,7 +219,7 @@ const scrollToTop = () => {
         <table data-title="Purchases Report">
           <thead>
             <tr>
-              <th>Jina la Dawa</th>
+              <th>Jina la Bidhaa</th>
               <th>Idadi ya ZIlizonunuliwa</th>
               <th>Gharama ya Kununua(Moja)</th>
               <th>Jumla ya Gharama</th>
@@ -255,7 +255,7 @@ const scrollToTop = () => {
         <table data-title="Sales Report">
           <thead>
             <tr>
-              <th>Jina la Dawa</th>
+              <th>Jina la Bidhaa</th>
               <th>Idadi ya Zilizouzwa</th>
               <th>Gharama ya Moja</th>
               <th>Jumla ya Gharama</th>
@@ -350,7 +350,7 @@ const scrollToTop = () => {
       <h2>📦 Ripoti ya Hali ya Stock</h2>
       <div className="table-container">
         <table data-title="Stock Status Report">
-          <thead><tr><th>Jina la Dawa</th><th>Idadi iliyobaki</th></tr></thead>
+          <thead><tr><th>Jina la Bidhaa</th><th>Idadi iliyobaki</th></tr></thead>
           <tbody>
             {stock
               .filter(item => item.itemName.toLowerCase().includes(searchQuery))

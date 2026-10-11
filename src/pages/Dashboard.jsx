@@ -129,7 +129,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <h2 className="dashboard-title">💊 Vivian Medics Dashboard</h2>
+      <h2 className="dashboard-title">Duka Kiganjani Dashboard</h2>
       <div className="summary-cards">
         {summaries.map((summary, index) => (
           <div className="card" key={index}>

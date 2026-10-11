@@ -193,7 +193,7 @@ setAllMedicineNames(uniqueMedicines);
       if (parsedSelling <= parsedBuying / parsedQty){
             alert('Bei ya kuuza : '+ parsedSelling+ ' uliyoweka ni lazima iwe juu ya bei ya kununua ambayo ni shilingi : '+ parsedBuying / parsedQty);
         }else{
-            alert('Tafadhali jaza vyema sehemu zote. Bei, Idadi, na Jina la Dawa vinahitajika na lazima viwe namba halali.');
+            alert('Tafadhali jaza vyema sehemu zote. Bei, Idadi, na Jina la Bidhaa vinahitajika na lazima viwe namba halali.');
         }
     }
   };
@@ -254,38 +254,21 @@ setAllMedicineNames(uniqueMedicines);
     )}
 
     <h1 className="headertu" style={{ animationDelay: '0s' }}>
-      Vivian Medics Purchases
+      Duka Kiganjani Purchases
     </h1>
 
     <div className="controls animated-section" style={{ animationDelay: '0.1s' }}>
       <input
         type="text"
-        placeholder="Search medicines..."
+        placeholder="Tafuta bidhaa..."
         value={searchQuery}
         onChange={e => setSearchQuery(e.target.value)}
       />
 
       <select value={category} onChange={e => setCategory(e.target.value)}>
         <option value="all">All</option>
-        <option value="Analgesics">Analgesics</option>
-        <option value="Antibiotics">Antibiotics</option>
-        <option value="Antimalarials">Antimalarials</option>
-        <option value="Antifungals">Antifungals</option>
-        <option value="Antiemetics">Antiemetics</option>
-        <option value="Anthelmintics">Anthelmintics</option>
-        <option value="PPIs">PPIs</option>
-        <option value="Anthypertensive">Anthypertensive</option>
-        <option value="Antidiabetics">Antidiabetics</option>
-        <option value="Cough Syrups">Cough Syrups</option>
-        <option value="Bronchodilators">Bronchodilators</option>
-        <option value="Steroids">Steroids</option>
-        <option value="Corticosteroids">Corticosteroids</option>
-        <option value="Antihistamines">Antihistamines</option>
-        <option value="Sedatives">Sedatives</option>
-        <option value="Creams">Creams</option>
-        <option value="Eye Care">Eye Care</option>
-        <option value="Ear Care">Ear Care</option>
-        <option value="Others">Others</option>
+        <option value="Bidhaa">Bidhaa</option>
+        <option value="Vinywaji">Vinywaji</option>
       </select>
 
       <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
@@ -473,25 +456,8 @@ setAllMedicineNames(uniqueMedicines);
               setNewItem({ ...newItem, category: e.target.value })
             }
           >
-            <option value="Analgesics">Analgesics</option>
-<option value="Antibiotics">Antibiotics</option>
-<option value="Antimalarials">Antimalarials</option>
-<option value="Antifungals">Antifungals</option>
-<option value="Antiemetics">Antiemetics</option>
-<option value="Anthelmintics">Anthelmintics</option>
-<option value="PPIs">PPIs</option>
-<option value="Anthypertensive">Anthypertensive</option>
-<option value="Antidiabetics">Antidiabetics</option>
-<option value="Cough Syrups">Cough Syrups</option>
-<option value="Bronchodilators">Bronchodilators</option>
-<option value="Steroids">Steroids</option>
-<option value="Corticosteroids">Corticosteroids</option>
-<option value="Antihistamines">Antihistamines</option>
-<option value="Sedatives">Sedatives</option>
-<option value="Creams">Creams</option>
-<option value="Eye Care">Eye Care</option>
-<option value="Ear Care">Ear Care</option>
-<option value="Others">Others</option>
+            <option value="Bidhaa">Bidhaa</option>
+            <option value="Vinywaji">Vinywaji</option>
           </select>
 
           <div className="dialog-actions">
@@ -551,25 +517,8 @@ setAllMedicineNames(uniqueMedicines);
               setEditItem({ ...editItem, category: e.target.value })
             }
           >
-            <option value="Analgesics">Analgesics</option>
-<option value="Antibiotics">Antibiotics</option>
-<option value="Antimalarials">Antimalarials</option>
-<option value="Antifungals">Antifungals</option>
-<option value="Antiemetics">Antiemetics</option>
-<option value="Anthelmintics">Anthelmintics</option>
-<option value="PPIs">PPIs</option>
-<option value="Antipyretics">Antipyretics</option>
-<option value="Antidiabetics">Antidiabetics</option>
-<option value="Cough Syrups">Cough Syrups</option>
-<option value="Bronchodilators">Bronchodilators</option>
-<option value="Steroids">Steroids</option>
-<option value="Corticosteroids">Corticosteroids</option>
-<option value="Antihistamines">Antihistamines</option>
-<option value="Sedatives">Sedatives</option>
-<option value="Creams">Creams</option>
-<option value="Eye Care">Eye Care</option>
-<option value="Ear Care">Ear Care</option>
-<option value="Others">Others</option>
+            <option value="Bidhaa">Bidhaa</option>
+            <option value="Vinywaji">Vinywaji</option>
           </select>
 
           <div className="dialog-actions">
