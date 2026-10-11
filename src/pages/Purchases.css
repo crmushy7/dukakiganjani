@@ -161,10 +161,11 @@ td.actions button {
 
   .purchases {
     padding: 0.4rem;
-    transform: scale(0.85);
-    transform-origin: top left;
-    overflow-x: auto;
-    width: 117%;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: visible;
+    transform: none;
   }
 
   table {
