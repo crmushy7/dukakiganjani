@@ -8,7 +8,7 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       manifest: {
-        name: "Vivian MedicoHub",
+        name: "Duka Kiganjani",
         short_name: "Duka Kiganjani",
         description: "Medical store management system",
         theme_color: "#ffffff",
