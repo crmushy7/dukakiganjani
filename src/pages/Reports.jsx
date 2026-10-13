@@ -2,8 +2,6 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import './Reports.css';
 import { db } from '../firebase';
 import { collection, getDocs } from 'firebase/firestore';
-import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 
@@ -342,35 +340,15 @@ const Report = () => {
   };
 
   const exportTables = (format) => {
-    const tables = Array.from(document.querySelectorAll('.report-container table'));
+    // Print the actual report layout instead of rebuilding tables into a separate document.
+    // In the browser print dialog, choose “Save as PDF” to preserve metric cards,
+    // analysis charts, notes, tables, section order, and the active report filters.
     if (format === 'pdf') {
-      const pdf = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
-      pdf.setFontSize(16);
-      pdf.text('Duka Kiganjani — Business Report', 14, 13);
-      pdf.setFontSize(9);
-      pdf.text(`Period: ${startDate || 'Beginning'} to ${endDate || 'Today'} | Generated: ${new Date().toLocaleString()}`, 14, 19);
-      let y = 25;
-      tables.forEach((table) => {
-        const title = table.dataset.title || 'Report table';
-        if (y > 175) {
-          pdf.addPage();
-          y = 15;
-        }
-        pdf.setFontSize(11);
-        pdf.text(title, 14, y);
-        autoTable(pdf, {
-          html: table,
-          startY: y + 3,
-          theme: 'grid',
-          styles: { fontSize: 7, cellPadding: 1.7 },
-          headStyles: { fillColor: [29, 78, 70] },
-          margin: { left: 14, right: 14 },
-        });
-        y = (pdf.lastAutoTable?.finalY || y) + 10;
-      });
-      pdf.save('Duka_Kiganjani_Report.pdf');
+      window.print();
       return;
     }
+
+    const tables = Array.from(document.querySelectorAll('.report-container table'));
 
     const workbook = XLSX.utils.book_new();
     tables.forEach((table, index) => {
